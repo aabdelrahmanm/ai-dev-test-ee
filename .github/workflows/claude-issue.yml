@@ -1,0 +1,307 @@
+name: Claude Code Assistant - Issues
+
+on:
+  issue_comment:
+    types: [created]
+  issues:
+    types: [assigned, labeled]
+
+# TODO: Troubleshoot why need multiple env variables for claude-code to work with bedrock
+env:
+  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+  ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
+  CLAUDE_CODE_USE_BEDROCK: ${{ vars.CLAUDE_CODE_USE_BEDROCK }}
+  AWS_REGION: ${{ vars.AWS_REGION }}
+  AI_DEV_ENABLED: ${{ vars.AI_DEV_ENABLED }}
+  GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+  GH_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+
+jobs:
+  claude-issue-handler:
+    if: |
+      (
+        (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude') && !github.event.issue.pull_request) ||
+        (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'claude-task')
+      ) && vars.AI_DEV_ENABLED == 'true'
+    runs-on: self-hosted
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+      ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
+      CLAUDE_CODE_USE_BEDROCK: ${{ vars.CLAUDE_CODE_USE_BEDROCK }}
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      MCP_LOG_LEVEL: ${{ vars.MCP_LOG_LEVEL }}
+
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      packages: read
+      checks: read
+      actions: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Get Host User Info
+        id: user-info
+        run: |
+          echo "uid=$(id -u)" >> $GITHUB_OUTPUT
+          echo "gid=$(id -g)" >> $GITHUB_OUTPUT
+          echo "username=$(whoami)" >> $GITHUB_OUTPUT
+          echo "Host user: $(whoami) (UID: $(id -u), GID: $(id -g))"
+
+
+      - name: Build Docker Image
+        env:
+          REPO_DIR: ${{ github.workspace }}
+        run: docker build -t claude-code:latest -f .github/workflows/Dockerfile --build-arg REPO_DIR .
+
+      - name: Construct Orchestrator Prompt
+        id: construct-prompt
+        env:
+          ISSUE_CONTEXT: ${{ toJSON(github.event.issue) }}
+        run: python3 .github/scripts/construct_prompt.py
+
+      - name: install dependencies
+        run: |
+          npm install @modelcontextprotocol/sdk
+
+      # Start background prompt hijacker
+      - name: Start Prompt Hijacker
+        run: |
+          echo "🚀 Starting background prompt hijacker..."
+          python3 .github/scripts/prompt_hijacker.py &
+          HIJACKER_PID=$!
+          echo "hijacker_pid=$HIJACKER_PID" >> $GITHUB_OUTPUT
+          echo "✅ Prompt hijacker started with PID: $HIJACKER_PID"
+        id: hijacker
+
+      # Run claude-code-action (library will write prompt, hijacker will replace it)
+      - name: Run Orchestrator Agent (with active hijacker)
+        env:
+          REPO_DIR: ${{ github.workspace }}
+        id: claude
+        uses: anthropics/claude-code-action@beta
+        with:
+          label_trigger: "claude-task"
+          github_token: ${{ secrets.AI_DEV_TOKEN }}
+          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+          GH_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
+          ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+          CLAUDE_CODE_USE_BEDROCK: ${{ vars.CLAUDE_CODE_USE_BEDROCK }}
+          timeout_minutes: "360"
+          mcp_config: |
+            {
+              "mcpServers": {
+                "agent-manager": {
+                  "command": "node",
+                  "args": [
+                    ".github/mcp-servers/agent-manager/index.js"
+                  ]
+                },
+                "claude_code_docker": {
+                    "command": "docker",
+                    "args": [
+                      "run",
+                      "-i",
+                      "--rm",
+                      "--name",
+                      "claude-code",
+                      "--user", "${{ steps.user-info.outputs.uid }}:${{ steps.user-info.outputs.gid }}",
+                      "-v",
+                      "${{ github.workspace }}:/home/github/app",
+                      "-w",
+                      "/home/github/app",
+                      "-e",
+                      "SHELL=/bin/bash",
+                      "-e",
+                      "ANTHROPIC_API_KEY",
+                      "-e",
+                      "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}",
+                      "-e", 
+                      "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}",
+                      "-e",
+                      "ANTHROPIC_BASE_URL",
+                      "-e",
+                      "REPO_DIR",
+                      "-e",
+                      "CLAUDE_CODE_USE_BEDROCK",
+                      "-e",
+                      "ANTHROPIC_MODEL",
+                      "-e",
+                      "AI_DEV_TOKEN",
+                      "claude-code:latest",
+                      "bash",
+                      "-c",
+                      "npm install @modelcontextprotocol/sdk && echo ${{ secrets.AI_DEV_TOKEN }} | gh auth login --with-token && claude mcp serve"
+                    ]
+                }
+              }
+            }
+          allowed_tools: |
+            mcp__agent-manager__list_agents
+            mcp__agent-manager__terminate_agent
+            mcp__agent-manager__get_agent_logs
+            mcp__agent-manager__run_agent
+            mcp__agent-manager__status
+            mcp__agent-manager__get_plan
+            mcp__agent-manager__get_progress
+            mcp__github__create_pull_request
+            mcp__github__delete_file
+            mcp__github__create_release
+            mcp__github__delete_branch
+            mcp__github__delete_issue
+            mcp__github__delete_pull_request
+            mcp__github__get_pull_request
+            mcp__github__list_pull_requests
+            mcp__github_file_ops__read_files
+            mcp__github__add_issue_comment
+            mcp__github__create_branch
+            mcp__github__create_issue
+            mcp__github__get_commit
+            mcp__github__get_file_contents
+            mcp__github__get_issue_comments
+            mcp__github__get_me
+            mcp__github__list_branches
+            mcp__github__list_commits
+            mcp__github__list_issues
+            mcp__github__push_files
+            mcp__github__search_code
+            mcp__github__search_issues
+            mcp__github__search_repositories
+            mcp__github__search_users
+            mcp__github__update_issue
+            mcp__github_file_ops__commit_files
+            mcp__github_file_ops__delete_files
+            mcp__github_file_ops__update_claude_comment
+            Task
+            Glob
+            Edit
+            MultiEdit
+            Write
+            NotebookEdit
+            mcp__claude_code_docker__Task
+            mcp__claude_code_docker__Bash
+            mcp__claude_code_docker__Glob
+            mcp__claude_code_docker__Grep
+            mcp__claude_code_docker__LS
+            mcp__claude_code_docker__exit_plan_mode
+            mcp__claude_code_docker__Read
+            mcp__claude_code_docker__Edit
+            mcp__claude_code_docker__MultiEdit
+            mcp__claude_code_docker__Write
+            mcp__claude_code_docker__NotebookRead
+            mcp__claude_code_docker__NotebookEdit
+            mcp__claude_code_docker__WebFetch
+            mcp__claude_code_docker__TodoWrite
+            mcp__claude_code_docker__Read
+            mcp__claude_code_docker__Edit
+            mcp__claude_code_docker__MultiEdit
+            Bash(bun install)
+            Bash(bun run format)
+            Bash(bun test:*)
+            Bash(bun typecheck)
+            Bash(gh)
+            Bash(node)
+            Bash(agents-monitor)
+            Bash
+            Bash(*)
+            mcp__github__create_or_update_file
+            mcp__github_file_ops__create_files
+            mcp__github_file_ops__write_files
+          claude_env: |
+            ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+            ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+            ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
+            CLAUDE_CODE_USE_BEDROCK: ${{ vars.CLAUDE_CODE_USE_BEDROCK }}
+            AWS_REGION: ${{ vars.AWS_REGION }}
+            MCP_LOG_LEVEL: ${{ vars.MCP_LOG_LEVEL }}
+            GH_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+            GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+
+      # Clean up the background hijacker process
+      - name: Stop Prompt Hijacker
+        if: always()
+        run: |
+          echo "🛑 Stopping prompt hijacker..."
+          if [ -n "${{ steps.hijacker.outputs.hijacker_pid }}" ]; then
+            kill ${{ steps.hijacker.outputs.hijacker_pid }} 2>/dev/null || true
+            echo "✅ Hijacker process stopped"
+          else
+            echo "ℹ️ No hijacker PID found"
+          fi
+
+      - name: 🚨 CRITICAL SAFE-GUARD - Ensure All Agent Work Is Committed
+        id: check-changes
+        env:
+          CLAUDE_CODE_USE_BEDROCK: 1
+          ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          echo "🚨 CRITICAL SAFE-GUARD: Checking that ALL agent work is committed to feature branch..."
+          claude -d --verbose --allowedTools "Bash(git:*) Bash(gh:*)" -p "🚨 CRITICAL SAFE-GUARD MISSION: Prevent loss of agent work
+
+          **MANDATORY CHECKS:**
+          1. Check git status - are there ANY uncommitted changes?
+          2. Check git log - are there commits that need to be pushed?
+          3. If ANY changes are uncommitted: STOP and report the issue
+          4. If commits exist but not pushed: Push them immediately
+          5. Only proceed if ALL work is committed and pushed
+
+          **ACTIONS:**
+          - If uncommitted changes found: Comment on issue #${{ github.event.issue.number }} with error message and list of uncommitted files
+          - If commits need pushing: Push them to feature branch immediately
+          - If all work is committed and pushed: Create PR with current branch
+          - If no work was done: Close issue #${{ github.event.issue.number }} with 'no changes needed' message
+
+          **CRITICAL**: NEVER let agent work be lost due to missing commits. This is the final safety check.
+
+          Use git status, git log, git push, and gh pr create as needed to ensure ALL agent work is preserved."
+
+      - name: Remove claude-working label
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.AI_DEV_TOKEN }}
+          script: |
+            console.log('🧹 Cleaning up claude-working label from issue');
+
+            const issueNumber = context.payload.issue.number;
+            const issue = context.payload.issue;
+
+            if (issueNumber && issue) {
+              // Check if claude-working label exists
+              const hasClaudeWorking = issue.labels && issue.labels.some(label => label.name === 'claude-working');
+
+              if (hasClaudeWorking) {
+                try {
+                  await github.rest.issues.removeLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    name: 'claude-working'
+                  });
+                  console.log(`✅ Removed claude-working label from issue #${issueNumber}`);
+                } catch (error) {
+                  console.log(`⚠️ Could not remove label: ${error.message}`);
+                }
+              } else {
+                console.log(`ℹ️ No claude-working label found on issue #${issueNumber}`);
+              }
+            } else {
+              console.log('⚠️ Could not determine issue number from event');
+            }

@@ -1,0 +1,44 @@
+{
+  "agents": {
+    "swe_agent": {
+      "description": "Software engineering agent specialized in code implementation, refactoring, bug fixes, and architectural decisions. Excels at translating requirements into working code.",
+      "max_concurrent_tasks": 1,
+      "timeout_minutes": 120
+    },
+    "test_agent": {
+      "description": "Testing and quality assurance agent focused on test planning, test implementation, validation, and quality verification. Creates comprehensive test strategies.",
+      "max_concurrent_tasks": 1,
+      "timeout_minutes": 120
+    }
+  },
+  "permissions": {
+    "disallowed_tools": [
+      "mcp__agent-manager__list_agents",
+      "mcp__agent-manager__terminate_agent",
+      "mcp__agent-manager__run_agent",
+      "mcp__agent-manager__get_agent_logs",
+      "mcp__agent-manager__status"
+    ],
+    "allowed_tools": [
+        "mcp__agent-manager__update_plan",
+        "mcp__agent-manager__update_progress",
+        "mcp__agent-manager__get_plan",
+        "mcp__agent-manager__get_progress",
+        "Task",
+        "Glob",
+        "Edit",
+        "MultiEdit",
+        "Write",
+        "NotebookEdit",
+        "Bash(bun install)",
+        "Bash(bun run format)",
+        "Bash(bun test:*)",
+        "Bash(bun typecheck)",
+        "Bash(gh)",
+        "Bash(git:*)",
+        "Bash(node)",
+        "Bash",
+        "Bash(*)"
+    ]
+  }
+}

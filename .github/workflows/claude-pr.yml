@@ -1,0 +1,394 @@
+name: Claude Code Assistant - Pull Requests
+
+on:
+  pull_request_review_comment:
+    types: [created]
+  pull_request_review:
+    types: [submitted]
+  issue_comment:
+    types: [created]
+
+env:
+  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+  ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
+  CLAUDE_CODE_USE_BEDROCK: ${{ vars.CLAUDE_CODE_USE_BEDROCK }}
+  AWS_REGION: ${{ vars.AWS_REGION }}
+  AI_DEV_ENABLED: ${{ vars.AI_DEV_ENABLED }}
+  GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+  GH_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+
+jobs:
+  claude-pr-handler:
+    if: |
+      (
+        (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+        (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+        (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude') && github.event.issue.pull_request)
+      ) && vars.AI_DEV_ENABLED == 'true'
+    runs-on: self-hosted
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+      ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
+      CLAUDE_CODE_USE_BEDROCK: ${{ vars.CLAUDE_CODE_USE_BEDROCK }}
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      MCP_LOG_LEVEL: ${{ vars.MCP_LOG_LEVEL }}
+
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      packages: read
+      checks: read
+      actions: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Get Host User Info
+        id: user-info
+        run: |
+          echo "uid=$(id -u)" >> $GITHUB_OUTPUT
+          echo "gid=$(id -g)" >> $GITHUB_OUTPUT
+          echo "username=$(whoami)" >> $GITHUB_OUTPUT
+          echo "Host user: $(whoami) (UID: $(id -u), GID: $(id -g))"
+
+      - name: Build Docker Image
+        env:
+          REPO_DIR: ${{ github.workspace }}
+        run: docker build -t claude-code:latest -f .github/workflows/Dockerfile --build-arg REPO_DIR .
+
+      - name: Construct Orchestrator Prompt
+        id: construct-prompt
+        env:
+          ISSUE_CONTEXT: ${{ github.event_name == 'issue_comment' && !github.event.issue.pull_request && toJSON(github.event.issue) || '' }}
+          PR_CONTEXT: ${{ (github.event_name == 'pull_request' || github.event_name == 'pull_request_review' || (github.event_name == 'issue_comment' &&
+            github.event.issue.pull_request)) && toJSON(github.event.pull_request || github.event.issue) || '' }}
+        run: python3 .github/scripts/construct_prompt.py
+
+      - name: install dependencies
+        run: |
+          npm install @modelcontextprotocol/sdk
+
+      # Start background prompt hijacker
+      - name: Start Prompt Hijacker
+        run: |
+          echo "🚀 Starting background prompt hijacker..."
+          python3 .github/scripts/prompt_hijacker.py &
+          HIJACKER_PID=$!
+          echo "hijacker_pid=$HIJACKER_PID" >> $GITHUB_OUTPUT
+          echo "✅ Prompt hijacker started with PID: $HIJACKER_PID"
+        id: hijacker
+
+      - name: Run Claude PR Action
+        env:
+          REPO_DIR: ${{ github.workspace }}
+        id: claude
+        uses: anthropics/claude-code-action@beta
+        with:
+          label_trigger: "claude-task"
+          GITHUB_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+          GH_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
+          ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+          CLAUDE_CODE_USE_BEDROCK: ${{ vars.CLAUDE_CODE_USE_BEDROCK }}
+          timeout_minutes: "360"
+          additional_permissions: |
+            actions: read
+          mcp_config: |
+            {
+              "mcpServers": {
+                "agent-manager": {
+                  "command": "node",
+                  "args": [
+                    ".github/mcp-servers/agent-manager/index.js"
+                  ]
+                },
+                "claude_code_docker": {
+                    "command": "docker",
+                    "args": [
+                      "run",
+                      "-i",
+                      "--rm",
+                      "--name",
+                      "claude-code",
+                      "--user", "${{ steps.user-info.outputs.uid }}:${{ steps.user-info.outputs.gid }}",
+                      "-v",
+                      "${{ github.workspace }}:/home/github/app",
+                      "-w",
+                      "/home/github/app",
+                      "-e",
+                      "SHELL=/bin/bash",
+                      "-e",
+                      "ANTHROPIC_API_KEY",
+                      "-e",
+                      "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}",
+                      "-e", 
+                      "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}",
+                      "-e",
+                      "ANTHROPIC_BASE_URL",
+                      "-e",
+                      "REPO_DIR",
+                      "-e",
+                      "CLAUDE_CODE_USE_BEDROCK",
+                      "-e",
+                      "ANTHROPIC_MODEL",
+                      "-e",
+                      "AI_DEV_TOKEN",
+                      "claude-code:latest",
+                      "bash",
+                      "-c",
+                      "npm install @modelcontextprotocol/sdk && echo ${{ secrets.AI_DEV_TOKEN }} | gh auth login --with-token && claude mcp serve"
+                    ]
+                }
+              }
+            }
+          allowed_tools: |
+            mcp__agent-manager__list_agents
+            mcp__agent-manager__terminate_agent
+            mcp__agent-manager__get_agent_logs
+            mcp__agent-manager__run_agent
+            mcp__agent-manager__status
+            mcp__agent-manager__get_plan
+            mcp__agent-manager__get_progress
+            Task
+            Glob
+            Edit
+            MultiEdit
+            Write
+            NotebookEdit
+            Bash(bun install)
+            Bash(bun run format)
+            Bash(bun test:*)
+            Bash(bun typecheck)
+            Bash(gh:*)
+            Bash(git:*)
+            Bash(node:*)
+            Bash(agents-monitor)
+            Bash
+            Bash(*)
+            mcp__github__create_release
+            mcp__github_file_ops__commit_files
+            mcp__github_file_ops__create_files
+            mcp__github_file_ops__delete_files
+            mcp__github_file_ops__read_files
+            mcp__github_file_ops__update_claude_comment
+            mcp__github_file_ops__write_files
+            mcp__github_ci__get_ci_status
+            mcp__github_ci__get_workflow_run_details
+            mcp__github_ci__download_job_log
+            mcp__github_comment__update_claude_comment
+            mcp__github__add_issue_comment
+            mcp__github__add_pull_request_review_comment_to_pending_review
+            mcp__github__assign_copilot_to_issue
+            mcp__github__cancel_workflow_run
+            mcp__github__create_and_submit_pull_request_review
+            mcp__github__create_branch
+            mcp__github__create_issue
+            mcp__github__create_or_update_file
+            mcp__github__create_pending_pull_request_review
+            mcp__github__create_pull_request
+            mcp__github__create_repository
+            mcp__github__delete_file
+            mcp__github__delete_pending_pull_request_review
+            mcp__github__delete_workflow_run_logs
+            mcp__github__dismiss_notification
+            mcp__github__download_workflow_run_artifact
+            mcp__github__fork_repository
+            mcp__github__get_code_scanning_alert
+            mcp__github__get_commit
+            mcp__github__get_file_contents
+            mcp__github__get_issue
+            mcp__github__get_issue_comments
+            mcp__github__get_job_logs
+            mcp__github__get_me
+            mcp__github__get_notification_details
+            mcp__github__get_pull_request
+            mcp__github__get_pull_request_comments
+            mcp__github__get_pull_request_diff
+            mcp__github__get_pull_request_files
+            mcp__github__get_pull_request_reviews
+            mcp__github__get_pull_request_status
+            mcp__github__get_secret_scanning_alert
+            mcp__github__get_tag
+            mcp__github__get_workflow_run
+            mcp__github__get_workflow_run_logs
+            mcp__github__get_workflow_run_usage
+            mcp__github__list_branches
+            mcp__github__list_code_scanning_alerts
+            mcp__github__list_commits
+            mcp__github__list_issues
+            mcp__github__list_notifications
+            mcp__github__list_pull_requests
+            mcp__github__list_secret_scanning_alerts
+            mcp__github__list_tags
+            mcp__github__list_workflow_jobs
+            mcp__github__list_workflow_run_artifacts
+            mcp__github__list_workflow_runs
+            mcp__github__list_workflows
+            mcp__github__manage_notification_subscription
+            mcp__github__manage_repository_notification_subscription
+            mcp__github__mark_all_notifications_read
+            mcp__github__merge_pull_request
+            mcp__github__push_files
+            mcp__github__request_copilot_review
+            mcp__github__rerun_failed_jobs
+            mcp__github__rerun_workflow_run
+            mcp__github__run_workflow
+            mcp__github__search_code
+            mcp__github__search_issues
+            mcp__github__search_orgs
+            mcp__github__search_pull_requests
+            mcp__github__search_repositories
+            mcp__github__search_users
+            mcp__github__submit_pending_pull_request_review
+            mcp__github__update_issue
+            mcp__github__update_pull_request
+            mcp__github__update_pull_request_branch
+
+          claude_env: |
+            ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+            ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+            ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
+            CLAUDE_CODE_USE_BEDROCK: ${{ vars.CLAUDE_CODE_USE_BEDROCK }}
+            AWS_REGION: ${{ vars.AWS_REGION }}
+            MCP_LOG_LEVEL: ${{ vars.MCP_LOG_LEVEL }}
+            GH_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+            GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+
+      # Clean up the background hijacker process
+      - name: Stop Prompt Hijacker
+        if: always()
+        run: |
+          echo "🛑 Stopping prompt hijacker..."
+          if [ -n "${{ steps.hijacker.outputs.hijacker_pid }}" ]; then
+            kill ${{ steps.hijacker.outputs.hijacker_pid }} 2>/dev/null || true
+            echo "✅ Hijacker process stopped"
+          else
+            echo "ℹ️ No hijacker PID found"
+          fi
+
+      - name: 🚨 CRITICAL SAFE-GUARD - Ensure All Agent Fixes Are Committed Before Merge
+        if: always()
+        env:
+          CLAUDE_CODE_USE_BEDROCK: 1
+          ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          claude -d --verbose --allowedTools "Bash(git:*) Bash(gh:*)" -p "$(cat <<'EOF'
+          🚨 CRITICAL SAFE-GUARD MISSION: Prevent loss of agent remediation work and ensure PR quality
+
+          **CONTEXT**: You are the final safety check ensuring ALL agent fixes are committed to the PR branch and the PR is ready for merge. Agent work MUST NOT be lost.
+
+          **PRIMARY OBJECTIVE**:
+          1. Verify ALL agent remediation work is committed to PR branch
+          2. Systematically evaluate PR #${{ github.event.pull_request.number }} for blocking issues
+          3. Take decisive action to either merge or provide feedback
+
+          **🚨 MANDATORY FIRST STEP - COMMIT VERIFICATION**:
+          - Execute: git status
+          - If ANY files are modified/untracked: STOP and comment '@claude CRITICAL: Agent fixes are not committed! Uncommitted files: [list files]. You must commit all changes immediately or they will be lost.'
+          - Execute: git log --oneline -5 to verify recent commits contain agent work
+          - If no recent commits with agent fixes: STOP and investigate why agent work wasn't committed
+
+          **🚨 ONLY PROCEED IF ALL AGENT WORK IS COMMITTED**
+
+          **EXECUTION STEPS** (Execute ALL steps in order - do not skip any):
+
+          **Step 1 - Comprehensive GitHub Actions Analysis**:
+          - Execute: gh pr checks ${{ github.event.pull_request.number }} --verbose
+          - Analyze ALL workflow runs, not just the latest ones
+          - For ANY failing checks:
+            * Get detailed logs: gh run view <failing-run-id> --log
+            * Identify the specific failure reason (compilation errors, test failures, linting issues, etc.)
+            * Leave detailed comment: gh pr comment ${{ github.event.pull_request.number }} --body '@claude there is a failed workflow run on this PR. Check the logs and fix the issue. Failure details: [SPECIFIC_ERROR_DETAILS_HERE]'
+            * Include the actual error messages, file names, and line numbers where possible
+            * STOP execution here - do not proceed to other steps
+
+          **Step 2 - Mergeability Assessment**:
+          - Execute: gh pr view ${{ github.event.pull_request.number }} --json mergeable,mergeStateStatus,mergeable_state
+          - Check for merge conflicts, branch protection rule violations, or other blocking conditions
+          - If ANY mergeability issues detected:
+            * Comment: gh pr comment ${{ github.event.pull_request.number }} --body '@claude PR has merge conflicts or branch protection issues that prevent merging. Please resolve conflicts and ensure all required checks pass.'
+            * STOP execution here
+
+          **Step 3 - Review Status Validation**:
+          - Execute: gh pr view ${{ github.event.pull_request.number }} --json reviews,reviewRequests
+          - Examine ALL reviews for CHANGES_REQUESTED status
+          - Check if required reviewers have approved
+          - If outstanding change requests OR missing required approvals:
+            * Comment: gh pr comment ${{ github.event.pull_request.number }} --body '@claude PR has outstanding review requirements. Either changes have been requested that need to be addressed, or required approvals are missing.'
+            * STOP execution here
+
+          **Step 4 - Automated Merge Execution**:
+          - Only reach this step if ALL previous checks pass completely
+          - Execute merge: gh pr merge ${{ github.event.pull_request.number }} --squash --delete-branch
+          - Confirm success: gh pr comment ${{ github.event.pull_request.number }} --body '✅ PR successfully merged after comprehensive validation. All checks passed, no conflicts detected, and all reviews satisfied.'
+
+          **CRITICAL REQUIREMENTS**:
+          - If you found the PR is closed but the git status showed uncommited changes or unpushed commits, **YOU MUST COMMIT THE CHANGES OTHERWISE ALL THE WORK WILL BE GONE AS YOU ARE RUNNING INSIDE GITHUB ACTIONS.**
+          - Be extremely thorough in your analysis - missing issues can break production
+          - Provide specific, actionable error details in your comments
+          - The @claude mention triggers this workflow again, creating a feedback loop until resolution
+          - Never merge if there are ANY doubts about code quality or functionality
+          - Always include specific failure details, file paths, and error messages when available
+
+          **SUCCESS CRITERIA**: Only merge when you are 100% confident that the code is production-ready and all quality gates have been satisfied.
+          EOF
+          )"
+
+      - name: Remove claude-working label
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.AI_DEV_TOKEN }}
+          script: |
+            console.log('🧹 Cleaning up claude-working label from PR');
+
+            let issueNumber;
+            let issueLike = null;
+
+            // Determine PR number based on event
+            if (context.eventName === 'pull_request_review' || context.eventName === 'pull_request_review_comment') {
+              issueNumber = context.payload.pull_request.number;
+              issueLike = context.payload.pull_request;
+            } else if (context.eventName === 'issue_comment' && context.payload.issue.pull_request) {
+              issueNumber = context.payload.issue.number;
+              issueLike = context.payload.issue;
+            }
+
+            if (issueNumber && issueLike) {
+              // Check if claude-working label exists
+              const hasClaudeWorking = issueLike.labels && issueLike.labels.some(label => label.name === 'claude-working');
+
+              if (hasClaudeWorking) {
+                try {
+                  await github.rest.issues.removeLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    name: 'claude-working'
+                  });
+                  console.log(`✅ Removed claude-working label from PR #${issueNumber}`);
+                } catch (error) {
+                  console.log(`⚠️ Could not remove label: ${error.message}`);
+                }
+              } else {
+                console.log(`ℹ️ No claude-working label found on PR #${issueNumber}`);
+              }
+            } else {
+              console.log('⚠️ Could not determine PR number from event');
+            }

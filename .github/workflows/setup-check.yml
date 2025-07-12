@@ -1,0 +1,491 @@
+name: 🔍 Setup Validation
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+    paths:
+      - '.github/workflows/setup-check.yml'
+      - 'setup-automation.sh'
+      - 'SETUP.md'
+      - 'README.md'
+
+jobs:
+  validate-setup:
+    runs-on: self-hosted
+    env:
+      GH_TOKEN: ${{ secrets.AI_DEV_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔍 Check Setup Status
+        id: setup-status
+        run: |
+          # Check if setup has been completed successfully before
+          if [[ -f ".github/.setup-complete" ]]; then
+            echo "setup_complete=true" >> $GITHUB_OUTPUT
+            echo "ℹ️  Setup has been completed previously"
+            echo "🔄 Running validation to ensure everything is still working..."
+          else
+            echo "setup_complete=false" >> $GITHUB_OUTPUT
+            echo "🚀 First-time setup detected - performing full configuration..."
+          fi
+
+      - name: 🏃‍♂️ Configure Self-Hosted Runner Environment
+        run: |
+          echo "🔧 Configuring self-hosted runner environment..."
+          
+          # Configure ~/.profile with required environment variables
+          PROFILE_FILE="$HOME/.profile"
+          
+          # Create .profile if it doesn't exist
+          if [[ ! -f "$PROFILE_FILE" ]]; then
+            touch "$PROFILE_FILE"
+            echo "Created $PROFILE_FILE"
+          fi
+          
+          # Check if CLAUDE_CODE_USE_BEDROCK is already configured
+          if ! grep -q "CLAUDE_CODE_USE_BEDROCK" "$PROFILE_FILE"; then
+            echo "" >> "$PROFILE_FILE"
+            echo "# AI Automation Environment Variables - Auto-configured by setup-check workflow" >> "$PROFILE_FILE"
+            echo "export CLAUDE_CODE_USE_BEDROCK=1" >> "$PROFILE_FILE"
+            echo "declare -r CLAUDE_CODE_USE_BEDROCK=1" >> "$PROFILE_FILE"
+            echo "✅ Added CLAUDE_CODE_USE_BEDROCK to ~/.profile"
+          else
+            echo "ℹ️  CLAUDE_CODE_USE_BEDROCK already configured in ~/.profile"
+          fi
+          
+          # Export for current session
+          export CLAUDE_CODE_USE_BEDROCK=1
+          echo "✅ Environment variables configured for self-hosted runner"
+          
+          # Install agents-monitor script if not present
+          MONITOR_SCRIPT="$HOME/.local/bin/agents-monitor"
+          
+          # Create ~/.local/bin if it doesn't exist
+          mkdir -p "$HOME/.local/bin"
+          
+          # Add ~/.local/bin to PATH if not already there
+          if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+            echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$PROFILE_FILE"
+            export PATH="$HOME/.local/bin:$PATH"
+            echo "✅ Added ~/.local/bin to PATH"
+          fi
+          
+          if [[ ! -f "$MONITOR_SCRIPT" ]]; then
+            echo "📦 Installing agents-monitor script..."
+            
+            # Create the agents-monitor script (no sudo needed)
+            cat > "$MONITOR_SCRIPT" << 'MONITOR_EOF'
+          #!/bin/bash
+          
+          # Simple agent state monitor script  
+          # Monitors agent state files and reports changes
+          
+          MONITOR="${GITHUB_WORKSPACE:-$(pwd)}/_tmp/agent_state/"
+          
+          # Use format to capture filename and exit after first change or timeout
+          result=$(inotifywait --timeout 1200 --format '%f' -e modify,create,close_write "$MONITOR" 2>/dev/null)
+          
+          if [ $? -eq 2 ]; then
+              # Timeout occurred (exit code 2)
+              echo "It's been 20 minutes since last agent update - time to check on them manually using mcp__agent-manager__get_progress(AGENT)"
+          else
+              # File change detected - remove _state.json from filename
+              clean_name="${result%_state.json}"
+              echo "Agent $clean_name has updates"
+          fi
+          
+          exit
+          MONITOR_EOF
+            
+            # Make it executable (no sudo needed)
+            chmod +x "$MONITOR_SCRIPT"
+            echo "✅ agents-monitor script installed at $MONITOR_SCRIPT"
+          else
+            echo "ℹ️  agents-monitor script already exists at $MONITOR_SCRIPT"
+          fi
+          
+          # Check for required system dependencies
+          echo ""
+          echo "🔍 Checking system dependencies..."
+          
+          MISSING_DEPS=0
+          
+          # Check Docker
+          if command -v docker &> /dev/null; then
+            echo "✅ Docker is available"
+            
+            # Test Docker functionality
+            if docker info &> /dev/null; then
+              echo "✅ Docker daemon is running and accessible"
+            else
+              echo "⚠️  Docker is installed but daemon may not be running or accessible"
+              echo "ℹ️  You may need to add the runner user to the docker group:"
+              echo "    sudo usermod -aG docker \$USER"
+              MISSING_DEPS=$((MISSING_DEPS + 1))
+            fi
+          else
+            echo "❌ Docker is not installed - REQUIRED for AI automation"
+            echo "ℹ️  Please install Docker:"
+            echo "    sudo apt-get update && sudo apt-get install -y docker.io"
+            echo "    sudo systemctl start docker"
+            echo "    sudo systemctl enable docker"
+            MISSING_DEPS=$((MISSING_DEPS + 1))
+          fi
+          
+          # Check file monitoring tools
+          if command -v inotifywait &> /dev/null; then
+            echo "✅ inotifywait is available for file monitoring"
+          else
+            echo "❌ inotifywait not found - REQUIRED for agents-monitor"
+            echo "ℹ️  Please install file monitoring tools:"
+            echo "    sudo apt-get install inotify-tools"
+            MISSING_DEPS=$((MISSING_DEPS + 1))
+          fi
+          
+          # Check and install Claude Code CLI
+          echo ""
+          echo "🤖 Checking Claude Code CLI..."
+          if command -v claude &> /dev/null; then
+            echo "✅ Claude Code CLI is already installed"
+            claude --version 2>/dev/null || echo "ℹ️  Claude CLI found but version check failed"
+          else
+            echo "⚠️  Claude Code CLI not found - installing locally..."
+            if command -v npm &> /dev/null; then
+              echo "📦 Installing Claude Code CLI to ~/.local..."
+              # Create local directories
+              mkdir -p ~/.local/bin ~/.local/lib/node_modules
+              # Install locally and create symlink
+              npm install --prefix ~/.local @anthropic-ai/claude-code
+              # Create symlink to binary
+              ln -sf ~/.local/node_modules/@anthropic-ai/claude-code/bin/claude ~/.local/bin/claude
+              # Add to PATH if not already there
+              if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+                echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
+                export PATH="$HOME/.local/bin:$PATH"
+              fi
+              if command -v claude &> /dev/null; then
+                echo "✅ Claude Code CLI installed successfully"
+                claude --version 2>/dev/null || echo "ℹ️  Claude CLI installed but version check failed"
+              else
+                echo "❌ Claude Code CLI installation failed"
+                MISSING_DEPS=$((MISSING_DEPS + 1))
+              fi
+            else
+              echo "❌ npm not found - cannot install Claude Code CLI"
+              echo "ℹ️  Please install Node.js and npm first:"
+              echo "    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -"
+              echo "    sudo apt-get install -y nodejs"
+              MISSING_DEPS=$((MISSING_DEPS + 1))
+            fi
+          fi
+          
+          # Report dependency status
+          if [[ $MISSING_DEPS -gt 0 ]]; then
+            echo ""
+            echo "⚠️  DEPENDENCIES MISSING: $MISSING_DEPS critical dependencies are missing"
+            echo "🚨 AI automation will NOT work properly until these are installed"
+            echo "📋 Please install missing dependencies and re-run this workflow"
+          else
+            echo ""
+            echo "✅ All system dependencies are properly configured!"
+          fi
+
+      - name: 🏷️ Create Required Labels
+        run: |
+          echo "🏷️ Creating required repository labels..."
+          
+          # Create claude-task label if it doesn't exist
+          if ! gh label list | grep -q "claude-task"; then
+            gh label create "claude-task" --description "Trigger AI automation for this issue/PR" --color "1f77b4"
+            echo "✅ Created 'claude-task' label"
+          else
+            echo "ℹ️  'claude-task' label already exists"
+          fi
+          
+          # Create other useful labels
+          if ! gh label list | grep -q "ai-dev"; then
+            gh label create "ai-dev" --description "AI development and automation" --color "ff7f0e"
+            echo "✅ Created 'ai-dev' label"
+          else
+            echo "ℹ️  'ai-dev' label already exists"
+          fi
+          
+          if ! gh label list | grep -q "claude-working"; then
+            gh label create "claude-working" --description "Claude is currently working on this issue/PR" --color "d62728"
+            echo "✅ Created 'claude-working' label"
+          else
+            echo "ℹ️  'claude-working' label already exists"
+          fi
+
+      - name: 🔍 Validate AI Automation Setup
+        run: |
+          echo "🤖 Validating AI automation configuration..."
+          echo "============================================"
+          
+          # Track validation status
+          VALIDATION_ERRORS=0
+          
+          # Check required secrets
+          echo ""
+          echo "🔑 Checking Repository Secrets:"
+          
+          if [[ -z "${{ secrets.ANTHROPIC_API_KEY }}" ]]; then
+            echo "❌ ANTHROPIC_API_KEY secret is missing"
+            VALIDATION_ERRORS=$((VALIDATION_ERRORS + 1))
+          else
+            echo "✅ ANTHROPIC_API_KEY is configured"
+          fi
+          
+          if [[ -z "${{ secrets.AI_DEV_TOKEN }}" ]]; then
+            echo "❌ AI_DEV_TOKEN secret is missing"
+            VALIDATION_ERRORS=$((VALIDATION_ERRORS + 1))
+          else
+            echo "✅ AI_DEV_TOKEN is configured"
+          fi
+          
+          if [[ -z "${{ secrets.AWS_ACCESS_KEY_ID }}" ]]; then
+            echo "❌ AWS_ACCESS_KEY_ID secret is missing"
+            VALIDATION_ERRORS=$((VALIDATION_ERRORS + 1))
+          else
+            echo "✅ AWS_ACCESS_KEY_ID is configured"
+          fi
+          
+          if [[ -z "${{ secrets.AWS_SECRET_ACCESS_KEY }}" ]]; then
+            echo "❌ AWS_SECRET_ACCESS_KEY secret is missing"
+            VALIDATION_ERRORS=$((VALIDATION_ERRORS + 1))
+          else
+            echo "✅ AWS_SECRET_ACCESS_KEY is configured"
+          fi
+          
+          # Check required variables
+          echo ""
+          echo "⚙️  Checking Repository Variables:"
+          
+          if [[ -z "${{ vars.AI_DEV_ENABLED }}" ]]; then
+            echo "❌ AI_DEV_ENABLED variable is missing"
+            VALIDATION_ERRORS=$((VALIDATION_ERRORS + 1))
+          elif [[ "${{ vars.AI_DEV_ENABLED }}" != "true" ]]; then
+            echo "⚠️  AI_DEV_ENABLED is set to '${{ vars.AI_DEV_ENABLED }}' (should be 'true')"
+            echo "   Automation will be disabled until this is fixed"
+            VALIDATION_ERRORS=$((VALIDATION_ERRORS + 1))
+          else
+            echo "✅ AI_DEV_ENABLED is configured correctly"
+          fi
+          
+          if [[ -z "${{ vars.ANTHROPIC_MODEL }}" ]]; then
+            echo "❌ ANTHROPIC_MODEL variable is missing"
+            VALIDATION_ERRORS=$((VALIDATION_ERRORS + 1))
+          else
+            echo "✅ ANTHROPIC_MODEL is configured: ${{ vars.ANTHROPIC_MODEL }}"
+          fi
+          
+          if [[ -z "${{ vars.AWS_REGION }}" ]]; then
+            echo "❌ AWS_REGION variable is missing"  
+            VALIDATION_ERRORS=$((VALIDATION_ERRORS + 1))
+          else
+            echo "✅ AWS_REGION is configured: ${{ vars.AWS_REGION }}"
+          fi
+          
+          if [[ -z "${{ vars.MCP_LOG_LEVEL }}" ]]; then
+            echo "⚠️  MCP_LOG_LEVEL variable is missing (will use default)"
+          else
+            echo "✅ MCP_LOG_LEVEL is configured: ${{ vars.MCP_LOG_LEVEL }}"
+          fi
+          
+          # Optional variables
+          echo ""
+          echo "🔧 Optional Configuration:"
+          
+          if [[ -n "${{ vars.ANTHROPIC_BASE_URL }}" ]]; then
+            echo "✅ ANTHROPIC_BASE_URL is configured (custom endpoint)"
+          else
+            echo "ℹ️  ANTHROPIC_BASE_URL not set (using default Anthropic endpoint)"
+          fi
+          
+          if [[ -n "${{ vars.CLAUDE_CODE_USE_BEDROCK }}" ]]; then
+            echo "✅ CLAUDE_CODE_USE_BEDROCK is configured: ${{ vars.CLAUDE_CODE_USE_BEDROCK }}"
+          else
+            echo "ℹ️  CLAUDE_CODE_USE_BEDROCK not set (using default)"
+          fi
+          
+          # Summary
+          echo ""
+          echo "📊 Validation Summary:"
+          echo "====================="
+          
+          if [[ $VALIDATION_ERRORS -eq 0 ]]; then
+            echo "🎉 All required configuration is present!"
+            echo "✅ AI automation is ready to use"
+            echo ""
+            echo "🚀 Next steps:"
+            echo "   1. Create an issue with the 'claude-task' label"
+            echo "   2. Watch the magic happen in the Actions tab"
+            echo "   3. Review SETUP.md for advanced configuration"
+          else
+            echo "❌ Found $VALIDATION_ERRORS configuration issue(s)"
+            echo "📚 Please review SETUP.md for configuration instructions"
+            echo "🛠️  Run ./setup-automation.sh for guided setup"
+            echo ""
+            echo "Required fixes:"
+            if [[ -z "${{ secrets.ANTHROPIC_API_KEY }}" ]]; then
+              echo "   - Add ANTHROPIC_API_KEY secret"
+            fi
+            if [[ -z "${{ secrets.AI_DEV_TOKEN }}" ]]; then
+              echo "   - Add AI_DEV_TOKEN secret" 
+            fi
+            if [[ -z "${{ secrets.AWS_ACCESS_KEY_ID }}" ]]; then
+              echo "   - Add AWS_ACCESS_KEY_ID secret"
+            fi
+            if [[ -z "${{ secrets.AWS_SECRET_ACCESS_KEY }}" ]]; then
+              echo "   - Add AWS_SECRET_ACCESS_KEY secret"
+            fi
+            if [[ "${{ vars.AI_DEV_ENABLED }}" != "true" ]]; then
+              echo "   - Set AI_DEV_ENABLED variable to 'true'"
+            fi
+            if [[ -z "${{ vars.ANTHROPIC_MODEL }}" ]]; then
+              echo "   - Add ANTHROPIC_MODEL variable"
+            fi
+            if [[ -z "${{ vars.AWS_REGION }}" ]]; then
+              echo "   - Add AWS_REGION variable"
+            fi
+            
+            exit 1
+          fi
+
+      - name: 🔍 Check Workflow Files
+        run: |
+          echo ""
+          echo "📁 Checking AI Automation Files:"
+          echo "================================"
+          
+          # Check for required workflow files
+          if [[ -f ".github/workflows/claude-issue.yml" ]]; then
+            echo "✅ claude-issue.yml workflow found"
+          else
+            echo "❌ claude-issue.yml workflow missing"
+          fi
+          
+          if [[ -f ".github/workflows/claude-pr.yml" ]]; then
+            echo "✅ claude-pr.yml workflow found"
+          else
+            echo "❌ claude-pr.yml workflow missing"
+          fi
+          
+          # Check for orchestrator prompts
+          if [[ -f ".github/prompts/issue-handle-prompt.txt" ]]; then
+            echo "✅ Orchestrator prompt found"
+          else
+            echo "❌ Orchestrator prompt missing"
+          fi
+          
+          # Check for agent manager
+          if [[ -d ".github/mcp-servers/agent-manager" ]]; then
+            echo "✅ Agent manager system found"
+          else
+            echo "❌ Agent manager system missing"
+          fi
+          
+          # Check for project instructions
+          if [[ -f "CLAUDE.md" ]]; then
+            echo "✅ CLAUDE.md project instructions found"
+          else
+            echo "⚠️  CLAUDE.md not found (recommended for project context)"
+          fi
+          
+          echo ""
+          echo "🎯 Template Status: Ready for AI automation!"
+          
+          # Verify environment configuration
+          echo ""
+          echo "🏃‍♂️ Self-Hosted Runner Environment:"
+          echo "===================================="
+          if [[ "$CLAUDE_CODE_USE_BEDROCK" == "1" ]]; then
+            echo "✅ CLAUDE_CODE_USE_BEDROCK environment variable configured"
+          else
+            echo "⚠️  CLAUDE_CODE_USE_BEDROCK environment variable not detected"
+          fi
+          
+          if command -v agents-monitor &> /dev/null; then
+            echo "✅ agents-monitor tool is available"
+            
+            # Test the script functionality
+            if [[ -x "$HOME/.local/bin/agents-monitor" ]]; then
+              echo "✅ agents-monitor script is executable and properly installed at ~/.local/bin"
+            else
+              echo "⚠️  agents-monitor exists but may have permission issues"
+            fi
+          else
+            echo "❌ agents-monitor tool not found - this should have been installed automatically"
+          fi
+          
+          if command -v inotifywait &> /dev/null; then
+            echo "✅ inotifywait monitoring tool is available"
+          elif command -v fswatch &> /dev/null; then
+            echo "✅ fswatch monitoring tool is available (macOS)"
+          else
+            echo "⚠️  No file monitoring tool found - agents-monitor may not work properly"
+          fi
+
+      - name: 🎯 Mark Setup Complete
+        if: success()
+        run: |
+          echo "📝 Marking setup as complete..."
+          
+          # Create setup completion marker
+          mkdir -p .github
+          cat > .github/.setup-complete << 'EOF'
+          # AI Automation Setup Complete
+          # 
+          # This file indicates that the AI automation setup has been completed successfully.
+          # The setup-check workflow will run in validation-only mode from now on.
+          #
+          # To re-run full setup:
+          # 1. Delete this file: rm .github/.setup-complete
+          # 2. Trigger the workflow manually or push changes to setup files
+          #
+          # Setup completed on: $(date)
+          EOF
+          
+          echo "✅ Setup completion marker created"
+          echo ""
+          echo "🎉 AI Automation Setup Complete!"
+          echo "================================="
+          echo ""
+          echo "🚀 Your repository is now ready for AI-powered development!"
+          echo ""
+          echo "📋 Next steps:"
+          echo "  1. Create an issue with the 'claude-task' label to test automation"
+          echo "  2. The setup-check workflow will now run in validation-only mode"
+          echo "  3. To disable setup-check entirely, see the workflow file comments"
+          echo ""
+          echo "🔧 To re-run full setup:"
+          echo "  1. Delete .github/.setup-complete"
+          echo "  2. Trigger this workflow manually"
+          echo ""
+          echo "📚 For help: Review SETUP.md or check workflow logs"
+
+      - name: 💡 Setup Management Instructions
+        if: success()
+        run: |
+          echo "💡 Setup Management Options:"
+          echo "============================"
+          echo ""
+          echo "🔄 Validation Mode (Current):"
+          echo "  - Setup-check runs only when setup files change"
+          echo "  - Validates configuration without full reconfiguration"
+          echo "  - Can be triggered manually for troubleshooting"
+          echo ""
+          echo "🛑 To Disable Setup-Check Completely:"
+          echo "  1. Go to repository Settings → Actions → General"
+          echo "  2. Find 'Setup Validation' workflow"
+          echo "  3. Click 'Disable workflow'"
+          echo "  OR"
+          echo "  4. Delete .github/workflows/setup-check.yml"
+          echo ""
+          echo "🔧 To Re-Enable Full Setup:"
+          echo "  1. Delete .github/.setup-complete"
+          echo "  2. Run: gh workflow run 'setup-check.yml'"
+          echo ""
+          echo "📈 Recommended: Keep validation mode for troubleshooting"

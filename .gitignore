@@ -1,0 +1,28 @@
+# AI Automation Setup Files
+.github/.setup-complete
+
+# AI Agent Temporary Files
+_tmp/
+# Contains: agent state files, orchestrator prompts, temporary workflow data
+
+# Node modules
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
