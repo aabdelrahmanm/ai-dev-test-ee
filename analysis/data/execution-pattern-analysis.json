@@ -1,0 +1,689 @@
+{
+  "title": "Kiro Execution Pattern Analysis",
+  "timestamp": "2025-07-22T22:07:25.396Z",
+  "summary": {
+    "totalExecutions": 15,
+    "averageDuration": "5938ms",
+    "primaryExecutionType": "direct-invocation",
+    "inferenceComplexity": "low"
+  },
+  "executionPatterns": [
+    {
+      "sequenceId": "2025-07-22T20:24:15.898Z",
+      "startTime": "2025-07-22T20:24:15.898Z",
+      "endTime": "2025-07-22T20:24:15.901Z",
+      "duration": 3,
+      "eventCount": 2,
+      "agentInvocations": 0,
+      "agentTriggers": 1,
+      "hookTriggers": 0,
+      "queueEvents": 1,
+      "executionType": "create-hook",
+      "decisionPoints": [],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:24:26.026Z",
+      "startTime": "2025-07-22T20:24:26.026Z",
+      "endTime": "2025-07-22T20:24:26.026Z",
+      "duration": 0,
+      "eventCount": 2,
+      "agentInvocations": 0,
+      "agentTriggers": 0,
+      "hookTriggers": 0,
+      "queueEvents": 2,
+      "executionType": "direct-invocation",
+      "decisionPoints": [],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:27:10.694Z",
+      "startTime": "2025-07-22T20:27:10.694Z",
+      "endTime": "2025-07-22T20:27:10.696Z",
+      "duration": 2,
+      "eventCount": 2,
+      "agentInvocations": 0,
+      "agentTriggers": 1,
+      "hookTriggers": 0,
+      "queueEvents": 1,
+      "executionType": "spec-generation",
+      "decisionPoints": [],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:27:10.703Z",
+      "startTime": "2025-07-22T20:27:10.703Z",
+      "endTime": "2025-07-22T20:27:10.703Z",
+      "duration": 0,
+      "eventCount": 2,
+      "agentInvocations": 0,
+      "agentTriggers": 0,
+      "hookTriggers": 0,
+      "queueEvents": 2,
+      "executionType": "direct-invocation",
+      "decisionPoints": [],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:27:31.091Z",
+      "startTime": "2025-07-22T20:27:31.091Z",
+      "endTime": "2025-07-22T20:27:31.091Z",
+      "duration": 0,
+      "eventCount": 2,
+      "agentInvocations": 0,
+      "agentTriggers": 1,
+      "hookTriggers": 0,
+      "queueEvents": 1,
+      "executionType": "spec-generation",
+      "decisionPoints": [],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:28:10.454Z",
+      "startTime": "2025-07-22T20:28:10.454Z",
+      "endTime": "2025-07-22T20:28:10.464Z",
+      "duration": 10,
+      "eventCount": 3,
+      "agentInvocations": 0,
+      "agentTriggers": 1,
+      "hookTriggers": 1,
+      "queueEvents": 1,
+      "executionType": "ask-agent",
+      "decisionPoints": [
+        {
+          "timestamp": "2025-07-22T20:28:10.454Z",
+          "type": "hook-decision",
+          "context": "event-response",
+          "hookId": "another-webhook"
+        }
+      ],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:32:12.384Z",
+      "startTime": "2025-07-22T20:32:12.384Z",
+      "endTime": "2025-07-22T20:32:12.384Z",
+      "duration": 0,
+      "eventCount": 2,
+      "agentInvocations": 0,
+      "agentTriggers": 0,
+      "hookTriggers": 0,
+      "queueEvents": 2,
+      "executionType": "direct-invocation",
+      "decisionPoints": [],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:32:52.567Z",
+      "startTime": "2025-07-22T20:32:52.567Z",
+      "endTime": "2025-07-22T20:32:52.567Z",
+      "duration": 0,
+      "eventCount": 2,
+      "agentInvocations": 0,
+      "agentTriggers": 0,
+      "hookTriggers": 0,
+      "queueEvents": 2,
+      "executionType": "direct-invocation",
+      "decisionPoints": [],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:33:45.050Z",
+      "startTime": "2025-07-22T20:33:45.050Z",
+      "endTime": "2025-07-22T20:33:45.076Z",
+      "duration": 26,
+      "eventCount": 2,
+      "agentInvocations": 0,
+      "agentTriggers": 1,
+      "hookTriggers": 0,
+      "queueEvents": 1,
+      "executionType": "chat-agent",
+      "decisionPoints": [],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:33:45.077Z",
+      "startTime": "2025-07-22T20:33:45.077Z",
+      "endTime": "2025-07-22T20:33:45.077Z",
+      "duration": 0,
+      "eventCount": 2,
+      "agentInvocations": 0,
+      "agentTriggers": 1,
+      "hookTriggers": 0,
+      "queueEvents": 1,
+      "executionType": "spec-generation",
+      "decisionPoints": [],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:33:45.078Z",
+      "startTime": "2025-07-22T20:33:45.078Z",
+      "endTime": "2025-07-22T20:34:01.918Z",
+      "duration": 16840,
+      "eventCount": 5,
+      "agentInvocations": 0,
+      "agentTriggers": 1,
+      "hookTriggers": 1,
+      "queueEvents": 3,
+      "executionType": "ask-agent",
+      "decisionPoints": [
+        {
+          "timestamp": "2025-07-22T20:34:01.907Z",
+          "type": "hook-decision",
+          "context": "event-response",
+          "hookId": "another-webhook"
+        }
+      ],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:39:06.608Z",
+      "startTime": "2025-07-22T20:39:06.608Z",
+      "endTime": "2025-07-22T20:40:18.783Z",
+      "duration": 72175,
+      "eventCount": 7,
+      "agentInvocations": 0,
+      "agentTriggers": 1,
+      "hookTriggers": 1,
+      "queueEvents": 5,
+      "executionType": "ask-agent",
+      "decisionPoints": [
+        {
+          "timestamp": "2025-07-22T20:39:24.176Z",
+          "type": "hook-decision",
+          "context": "event-response",
+          "hookId": "another-webhook"
+        }
+      ],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:40:18.783Z",
+      "startTime": "2025-07-22T20:40:18.783Z",
+      "endTime": "2025-07-22T20:40:18.783Z",
+      "duration": 0,
+      "eventCount": 1,
+      "agentInvocations": 0,
+      "agentTriggers": 0,
+      "hookTriggers": 0,
+      "queueEvents": 1,
+      "executionType": "direct-invocation",
+      "decisionPoints": [],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:40:18.783Z",
+      "startTime": "2025-07-22T20:40:18.783Z",
+      "endTime": "2025-07-22T20:40:18.783Z",
+      "duration": 0,
+      "eventCount": 1,
+      "agentInvocations": 0,
+      "agentTriggers": 0,
+      "hookTriggers": 0,
+      "queueEvents": 1,
+      "executionType": "direct-invocation",
+      "decisionPoints": [],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    },
+    {
+      "sequenceId": "2025-07-22T20:40:18.827Z",
+      "startTime": "2025-07-22T20:40:18.827Z",
+      "endTime": "2025-07-22T20:40:18.847Z",
+      "duration": 20,
+      "eventCount": 3,
+      "agentInvocations": 0,
+      "agentTriggers": 1,
+      "hookTriggers": 1,
+      "queueEvents": 1,
+      "executionType": "ask-agent",
+      "decisionPoints": [
+        {
+          "timestamp": "2025-07-22T20:40:18.827Z",
+          "type": "hook-decision",
+          "context": "event-response",
+          "hookId": "another-webhook"
+        }
+      ],
+      "inferencePattern": {
+        "type": "no-inference",
+        "count": 0
+      }
+    }
+  ],
+  "agentInvocations": [
+    {
+      "timestamp": "2025-07-22T20:24:15.898Z",
+      "component": "agent-controller",
+      "type": "agent-trigger",
+      "agentType": "create-hook",
+      "autonomyMode": "Autopilot",
+      "rawMessage": "Triggered new agent: create-hook (autonomyMode=Autopilot)"
+    },
+    {
+      "timestamp": "2025-07-22T20:27:10.694Z",
+      "component": "agent-controller",
+      "type": "agent-trigger",
+      "agentType": "spec-generation",
+      "autonomyMode": "Autopilot",
+      "rawMessage": "Triggered new agent: spec-generation (autonomyMode=Autopilot)"
+    },
+    {
+      "timestamp": "2025-07-22T20:27:31.091Z",
+      "component": "agent-controller",
+      "type": "agent-trigger",
+      "agentType": "spec-generation",
+      "autonomyMode": "Autopilot",
+      "rawMessage": "Triggered new agent: spec-generation (autonomyMode=Autopilot)"
+    },
+    {
+      "timestamp": "2025-07-22T20:28:10.454Z",
+      "component": "Hooks",
+      "type": "hook-trigger",
+      "hookData": {
+        "hook": "another-webhook",
+        "event": "fileEdited"
+      },
+      "rawMessage": "Hook running, starting trigger handler {\"hook\":\"another-webhook\",\"event\":\"fileEdited\"}"
+    },
+    {
+      "timestamp": "2025-07-22T20:28:10.464Z",
+      "component": "agent-controller",
+      "type": "agent-trigger",
+      "agentType": "ask-agent",
+      "autonomyMode": "Autopilot",
+      "rawMessage": "Triggered new agent: ask-agent (autonomyMode=Autopilot)"
+    },
+    {
+      "timestamp": "2025-07-22T20:33:45.050Z",
+      "component": "agent-controller",
+      "type": "agent-trigger",
+      "agentType": "chat-agent",
+      "autonomyMode": "Autopilot",
+      "rawMessage": "Triggered new agent: chat-agent (autonomyMode=Autopilot)"
+    },
+    {
+      "timestamp": "2025-07-22T20:33:45.077Z",
+      "component": "agent-controller",
+      "type": "agent-trigger",
+      "agentType": "spec-generation",
+      "autonomyMode": "Autopilot",
+      "rawMessage": "Triggered new agent: spec-generation (autonomyMode=Autopilot)"
+    },
+    {
+      "timestamp": "2025-07-22T20:34:01.907Z",
+      "component": "Hooks",
+      "type": "hook-trigger",
+      "hookData": {
+        "hook": "another-webhook",
+        "event": "fileEdited"
+      },
+      "rawMessage": "Hook running, starting trigger handler {\"hook\":\"another-webhook\",\"event\":\"fileEdited\"}"
+    },
+    {
+      "timestamp": "2025-07-22T20:34:01.918Z",
+      "component": "agent-controller",
+      "type": "agent-trigger",
+      "agentType": "ask-agent",
+      "autonomyMode": "Autopilot",
+      "rawMessage": "Triggered new agent: ask-agent (autonomyMode=Autopilot)"
+    },
+    {
+      "timestamp": "2025-07-22T20:39:24.176Z",
+      "component": "Hooks",
+      "type": "hook-trigger",
+      "hookData": {
+        "hook": "another-webhook",
+        "event": "fileEdited"
+      },
+      "rawMessage": "Hook running, starting trigger handler {\"hook\":\"another-webhook\",\"event\":\"fileEdited\"}"
+    },
+    {
+      "timestamp": "2025-07-22T20:39:24.182Z",
+      "component": "agent-controller",
+      "type": "agent-trigger",
+      "agentType": "ask-agent",
+      "autonomyMode": "Autopilot",
+      "rawMessage": "Triggered new agent: ask-agent (autonomyMode=Autopilot)"
+    },
+    {
+      "timestamp": "2025-07-22T20:40:18.827Z",
+      "component": "Hooks",
+      "type": "hook-trigger",
+      "hookData": {
+        "hook": "another-webhook",
+        "event": "fileEdited"
+      },
+      "rawMessage": "Hook running, starting trigger handler {\"hook\":\"another-webhook\",\"event\":\"fileEdited\"}"
+    },
+    {
+      "timestamp": "2025-07-22T20:40:18.847Z",
+      "component": "agent-controller",
+      "type": "agent-trigger",
+      "agentType": "ask-agent",
+      "autonomyMode": "Autopilot",
+      "rawMessage": "Triggered new agent: ask-agent (autonomyMode=Autopilot)"
+    }
+  ],
+  "queueManagement": [
+    {
+      "timestamp": "2025-07-22T20:24:15.901Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 1
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":1}"
+    },
+    {
+      "timestamp": "2025-07-22T20:24:26.026Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": true,
+        "queueSize": 0
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":true,\"queueSize\":0}"
+    },
+    {
+      "timestamp": "2025-07-22T20:24:26.026Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 0
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":0}"
+    },
+    {
+      "timestamp": "2025-07-22T20:27:10.696Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 1
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":1}"
+    },
+    {
+      "timestamp": "2025-07-22T20:27:10.703Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": true,
+        "queueSize": 0
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":true,\"queueSize\":0}"
+    },
+    {
+      "timestamp": "2025-07-22T20:27:10.703Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 0
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":0}"
+    },
+    {
+      "timestamp": "2025-07-22T20:27:31.091Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 1
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":1}"
+    },
+    {
+      "timestamp": "2025-07-22T20:28:10.464Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": true,
+        "queueSize": 1
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":true,\"queueSize\":1}"
+    },
+    {
+      "timestamp": "2025-07-22T20:32:12.384Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": true,
+        "queueSize": 1
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":true,\"queueSize\":1}"
+    },
+    {
+      "timestamp": "2025-07-22T20:32:12.384Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 1
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":1}"
+    },
+    {
+      "timestamp": "2025-07-22T20:32:52.567Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": true,
+        "queueSize": 0
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":true,\"queueSize\":0}"
+    },
+    {
+      "timestamp": "2025-07-22T20:32:52.567Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 0
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":0}"
+    },
+    {
+      "timestamp": "2025-07-22T20:33:45.076Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 0
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":0}"
+    },
+    {
+      "timestamp": "2025-07-22T20:33:45.077Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 1
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":1}"
+    },
+    {
+      "timestamp": "2025-07-22T20:33:45.078Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": true,
+        "queueSize": 0
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":true,\"queueSize\":0}"
+    },
+    {
+      "timestamp": "2025-07-22T20:33:45.084Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": true,
+        "queueSize": 0
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":true,\"queueSize\":0}"
+    },
+    {
+      "timestamp": "2025-07-22T20:34:01.918Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": true,
+        "queueSize": 1
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":true,\"queueSize\":1}"
+    },
+    {
+      "timestamp": "2025-07-22T20:39:06.608Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": true,
+        "queueSize": 1
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":true,\"queueSize\":1}"
+    },
+    {
+      "timestamp": "2025-07-22T20:39:24.182Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": true,
+        "queueSize": 2
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":true,\"queueSize\":2}"
+    },
+    {
+      "timestamp": "2025-07-22T20:39:40.096Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": true,
+        "queueSize": 2
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":true,\"queueSize\":2}"
+    },
+    {
+      "timestamp": "2025-07-22T20:40:18.783Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": true,
+        "queueSize": 2
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":true,\"queueSize\":2}"
+    },
+    {
+      "timestamp": "2025-07-22T20:40:18.783Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 2
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":2}"
+    },
+    {
+      "timestamp": "2025-07-22T20:40:18.783Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 1
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":1}"
+    },
+    {
+      "timestamp": "2025-07-22T20:40:18.783Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 0
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":0}"
+    },
+    {
+      "timestamp": "2025-07-22T20:40:18.847Z",
+      "component": "agent-controller",
+      "type": "queue-management",
+      "queueData": {
+        "activeExecution": false,
+        "queueSize": 1
+      },
+      "rawMessage": "Progressing model queue {\"activeExecution\":false,\"queueSize\":1}"
+    }
+  ],
+  "insights": {
+    "totalExecutions": 15,
+    "averageExecutionDuration": 5938,
+    "inferencePatterns": {
+      "singleInference": 0,
+      "multipleInference": 0,
+      "rapidFire": 0,
+      "sequential": 0,
+      "deliberate": 0
+    },
+    "executionTypes": {
+      "create-hook": 1,
+      "direct-invocation": 6,
+      "spec-generation": 3,
+      "ask-agent": 4,
+      "chat-agent": 1
+    },
+    "decisionFrequency": {
+      "totalDecisions": 4,
+      "averagePerExecution": 0.27,
+      "maxDecisionsInSingleExecution": 1
+    },
+    "queueBehavior": {
+      "active": 12,
+      "inactive": 13,
+      "queued": 15
+    }
+  }
+}

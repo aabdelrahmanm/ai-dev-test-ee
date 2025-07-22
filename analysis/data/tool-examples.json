@@ -1,0 +1,632 @@
+{
+  "summary": {
+    "toolsWithExamples": 3,
+    "totalExamples": 67,
+    "errorTypes": 1,
+    "totalErrors": 2
+  },
+  "toolExamples": {
+    "listDirectory": [
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "messageIndex": 3,
+        "example": "You are operating in a workspace with files and folders. Below is the known structure of the workspace. If a directory is marked closed, you can use the 'openFolders' tool to dig in deeper.\n\n<fileTree>\n<folder name='.git' closed />\n<folder name='.github' closed />\n<file name='.gitignore' />\n<folder ...",
+        "description": "File tree display showing workspace structure"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 0,
+        "example": "FileTree context loaded",
+        "description": "Directory structure loaded into context"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "messageIndex": 3,
+        "example": "You are operating in a workspace with files and folders. Below is the known structure of the workspace. If a directory is marked closed, you can use the 'openFolders' tool to dig in deeper.\n\n<fileTree>\n<folder name='.git' closed />\n<folder name='.github' closed />\n<file name='.gitignore' />\n<folder ...",
+        "description": "File tree display showing workspace structure"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 0,
+        "example": "FileTree context loaded",
+        "description": "Directory structure loaded into context"
+      },
+      {
+        "type": "success",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "3.chat",
+        "messageIndex": 3,
+        "example": "You are operating in a workspace with files and folders. Below is the known structure of the workspace. If a directory is marked closed, you can use the 'openFolders' tool to dig in deeper.\n\n<fileTree>\n<folder name='.git' closed />\n<folder name='.github' closed />\n<file name='.gitignore' />\n<folder ...",
+        "description": "File tree display showing workspace structure"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "3.chat",
+        "contextIndex": 0,
+        "example": "FileTree context loaded",
+        "description": "Directory structure loaded into context"
+      },
+      {
+        "type": "success",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "4.chat",
+        "messageIndex": 3,
+        "example": "You are operating in a workspace with files and folders. Below is the known structure of the workspace. If a directory is marked closed, you can use the 'openFolders' tool to dig in deeper.\n\n<fileTree>\n<folder name='.git' closed />\n<folder name='.github' closed />\n<file name='.gitignore' />\n<folder ...",
+        "description": "File tree display showing workspace structure"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "4.chat",
+        "contextIndex": 0,
+        "example": "FileTree context loaded",
+        "description": "Directory structure loaded into context"
+      },
+      {
+        "type": "success",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "5.chat",
+        "messageIndex": 3,
+        "example": "You are operating in a workspace with files and folders. Below is the known structure of the workspace. If a directory is marked closed, you can use the 'openFolders' tool to dig in deeper.\n\n<fileTree>\n<folder name='.git' closed />\n<folder name='.github' closed />\n<file name='.gitignore' />\n<folder ...",
+        "description": "File tree display showing workspace structure"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "5.chat",
+        "contextIndex": 0,
+        "example": "FileTree context loaded",
+        "description": "Directory structure loaded into context"
+      },
+      {
+        "type": "success",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "6.chat",
+        "messageIndex": 3,
+        "example": "You are operating in a workspace with files and folders. Below is the known structure of the workspace. If a directory is marked closed, you can use the 'openFolders' tool to dig in deeper.\n\n<fileTree>\n<folder name='.git' closed />\n<folder name='.github' closed />\n<file name='.gitignore' />\n<folder ...",
+        "description": "File tree display showing workspace structure"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "6.chat",
+        "contextIndex": 0,
+        "example": "FileTree context loaded",
+        "description": "Directory structure loaded into context"
+      },
+      {
+        "type": "success",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "7.chat",
+        "messageIndex": 3,
+        "example": "You are operating in a workspace with files and folders. Below is the known structure of the workspace. If a directory is marked closed, you can use the 'openFolders' tool to dig in deeper.\n\n<fileTree>\n<folder name='.git' closed />\n<folder name='.github' closed />\n<file name='.gitignore' />\n<folder ...",
+        "description": "File tree display showing workspace structure"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "7.chat",
+        "contextIndex": 0,
+        "example": "FileTree context loaded",
+        "description": "Directory structure loaded into context"
+      }
+    ],
+    "readFile": [
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/steering/tech.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/steering/tech.md",
+        "targetFile": ".kiro/steering/tech.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/specs/sdd-cli-tool/tasks.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/specs/sdd-cli-tool/tasks.md",
+        "targetFile": ".kiro/specs/sdd-cli-tool/tasks.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/steering/Create a steering to commit to git after each task completion.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/steering/Create a steering to commit to git after each task completion.md",
+        "targetFile": ".kiro/steering/Create a steering to commit to git after each task completion.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/specs/sdd-cli-tool/design.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/specs/sdd-cli-tool/design.md",
+        "targetFile": ".kiro/specs/sdd-cli-tool/design.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/specs/sdd-cli-tool/requirements.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/specs/sdd-cli-tool/requirements.md",
+        "targetFile": ".kiro/specs/sdd-cli-tool/requirements.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/specs/n8n-mcp-integration/tasks.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/specs/n8n-mcp-integration/tasks.md",
+        "targetFile": ".kiro/specs/n8n-mcp-integration/tasks.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/specs/n8n-mcp-integration/design.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/specs/n8n-mcp-integration/design.md",
+        "targetFile": ".kiro/specs/n8n-mcp-integration/design.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 1,
+        "example": "File context: .kiro/steering/tech.md",
+        "description": "File loaded into context: .kiro/steering/tech.md",
+        "targetFile": ".kiro/steering/tech.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 2,
+        "example": "File context: .kiro/hooks/specs/n8n-workflow.md",
+        "description": "File loaded into context: .kiro/hooks/specs/n8n-workflow.md",
+        "targetFile": ".kiro/hooks/specs/n8n-workflow.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 3,
+        "example": "File context: .kiro/specs/sdd-cli-tool/tasks.md",
+        "description": "File loaded into context: .kiro/specs/sdd-cli-tool/tasks.md",
+        "targetFile": ".kiro/specs/sdd-cli-tool/tasks.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 4,
+        "example": "File context: .kiro/steering/Create a steering to commit to git after each task completion.md",
+        "description": "File loaded into context: .kiro/steering/Create a steering to commit to git after each task completion.md",
+        "targetFile": ".kiro/steering/Create a steering to commit to git after each task completion.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 5,
+        "example": "File context: .kiro/specs/sdd-cli-tool/design.md",
+        "description": "File loaded into context: .kiro/specs/sdd-cli-tool/design.md",
+        "targetFile": ".kiro/specs/sdd-cli-tool/design.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 6,
+        "example": "File context: .kiro/specs/sdd-cli-tool/requirements.md",
+        "description": "File loaded into context: .kiro/specs/sdd-cli-tool/requirements.md",
+        "targetFile": ".kiro/specs/sdd-cli-tool/requirements.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 7,
+        "example": "File context: .kiro/specs/n8n-mcp-integration/tasks.md",
+        "description": "File loaded into context: .kiro/specs/n8n-mcp-integration/tasks.md",
+        "targetFile": ".kiro/specs/n8n-mcp-integration/tasks.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 8,
+        "example": "File context: .kiro/specs/n8n-mcp-integration/design.md",
+        "description": "File loaded into context: .kiro/specs/n8n-mcp-integration/design.md",
+        "targetFile": ".kiro/specs/n8n-mcp-integration/design.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/steering/tech.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/steering/tech.md",
+        "targetFile": ".kiro/steering/tech.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/specs/sdd-cli-tool/tasks.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/specs/sdd-cli-tool/tasks.md",
+        "targetFile": ".kiro/specs/sdd-cli-tool/tasks.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/steering/Create a steering to commit to git after each task completion.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/steering/Create a steering to commit to git after each task completion.md",
+        "targetFile": ".kiro/steering/Create a steering to commit to git after each task completion.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/specs/sdd-cli-tool/design.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/specs/sdd-cli-tool/design.md",
+        "targetFile": ".kiro/specs/sdd-cli-tool/design.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/specs/sdd-cli-tool/requirements.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/specs/sdd-cli-tool/requirements.md",
+        "targetFile": ".kiro/specs/sdd-cli-tool/requirements.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/specs/n8n-mcp-integration/tasks.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/specs/n8n-mcp-integration/tasks.md",
+        "targetFile": ".kiro/specs/n8n-mcp-integration/tasks.md"
+      },
+      {
+        "type": "success",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/specs/n8n-mcp-integration/design.md\" language=\"markdown\" >",
+        "description": "Reading file: .kiro/specs/n8n-mcp-integration/design.md",
+        "targetFile": ".kiro/specs/n8n-mcp-integration/design.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 1,
+        "example": "File context: .kiro/steering/tech.md",
+        "description": "File loaded into context: .kiro/steering/tech.md",
+        "targetFile": ".kiro/steering/tech.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 2,
+        "example": "File context: .kiro/hooks/specs/n8n-workflow.md",
+        "description": "File loaded into context: .kiro/hooks/specs/n8n-workflow.md",
+        "targetFile": ".kiro/hooks/specs/n8n-workflow.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 3,
+        "example": "File context: .kiro/specs/sdd-cli-tool/tasks.md",
+        "description": "File loaded into context: .kiro/specs/sdd-cli-tool/tasks.md",
+        "targetFile": ".kiro/specs/sdd-cli-tool/tasks.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 4,
+        "example": "File context: .kiro/steering/Create a steering to commit to git after each task completion.md",
+        "description": "File loaded into context: .kiro/steering/Create a steering to commit to git after each task completion.md",
+        "targetFile": ".kiro/steering/Create a steering to commit to git after each task completion.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 5,
+        "example": "File context: .kiro/specs/sdd-cli-tool/design.md",
+        "description": "File loaded into context: .kiro/specs/sdd-cli-tool/design.md",
+        "targetFile": ".kiro/specs/sdd-cli-tool/design.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 6,
+        "example": "File context: .kiro/specs/sdd-cli-tool/requirements.md",
+        "description": "File loaded into context: .kiro/specs/sdd-cli-tool/requirements.md",
+        "targetFile": ".kiro/specs/sdd-cli-tool/requirements.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 7,
+        "example": "File context: .kiro/specs/n8n-mcp-integration/tasks.md",
+        "description": "File loaded into context: .kiro/specs/n8n-mcp-integration/tasks.md",
+        "targetFile": ".kiro/specs/n8n-mcp-integration/tasks.md"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 8,
+        "example": "File context: .kiro/specs/n8n-mcp-integration/design.md",
+        "description": "File loaded into context: .kiro/specs/n8n-mcp-integration/design.md",
+        "targetFile": ".kiro/specs/n8n-mcp-integration/design.md"
+      }
+    ],
+    "contextInjection": [
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 9,
+        "example": "<!------------------------------------------------------------------------------------\n   Add Rules to this file or a short description and have Kiro refine them for you:   Commit to git after each ta...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 10,
+        "example": "# Product Overview\n\n## AI-Powered Development Automation Template\n\nThis is a comprehensive AI automation template for GitHub repositories that enables intelligent issue resolution and PR management us...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 11,
+        "example": "# Project Structure\n\n## Root Level Organization\n\n```\n├── .github/                    # GitHub Actions workflows and templates\n├── .kiro/                     # Kiro IDE configuration (specs, hooks, ste...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "contextIndex": 12,
+        "example": "# Technology Stack\n\n## Core Technologies\n\n**Runtime Environment:**\n- Node.js 18+ (required for all components)\n- TypeScript 5.x for type safety and modern JavaScript features\n- Python 3 for AI automat...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 9,
+        "example": "<!------------------------------------------------------------------------------------\n   Add Rules to this file or a short description and have Kiro refine them for you:   Commit to git after each ta...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 10,
+        "example": "# Product Overview\n\n## AI-Powered Development Automation Template\n\nThis is a comprehensive AI automation template for GitHub repositories that enables intelligent issue resolution and PR management us...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 11,
+        "example": "# Project Structure\n\n## Root Level Organization\n\n```\n├── .github/                    # GitHub Actions workflows and templates\n├── .kiro/                     # Kiro IDE configuration (specs, hooks, ste...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "contextIndex": 12,
+        "example": "# Technology Stack\n\n## Core Technologies\n\n**Runtime Environment:**\n- Node.js 18+ (required for all components)\n- TypeScript 5.x for type safety and modern JavaScript features\n- Python 3 for AI automat...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "3.chat",
+        "contextIndex": 1,
+        "example": "# Product Overview\n\n## AI-Powered Development Automation Template\n\nThis is a comprehensive AI automation template for GitHub repositories that enables intelligent issue resolution and PR management us...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "3.chat",
+        "contextIndex": 2,
+        "example": "# Project Structure\n\n## Root Level Organization\n\n```\n├── .github/                    # GitHub Actions workflows and templates\n├── .kiro/                     # Kiro IDE configuration (specs, hooks, ste...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "3.chat",
+        "contextIndex": 3,
+        "example": "# Technology Stack\n\n## Core Technologies\n\n**Runtime Environment:**\n- Node.js 18+ (required for all components)\n- TypeScript 5.x for type safety and modern JavaScript features\n- Python 3 for AI automat...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "4.chat",
+        "contextIndex": 1,
+        "example": "# Product Overview\n\n## AI-Powered Development Automation Template\n\nThis is a comprehensive AI automation template for GitHub repositories that enables intelligent issue resolution and PR management us...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "4.chat",
+        "contextIndex": 2,
+        "example": "# Project Structure\n\n## Root Level Organization\n\n```\n├── .github/                    # GitHub Actions workflows and templates\n├── .kiro/                     # Kiro IDE configuration (specs, hooks, ste...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "4.chat",
+        "contextIndex": 3,
+        "example": "# Technology Stack\n\n## Core Technologies\n\n**Runtime Environment:**\n- Node.js 18+ (required for all components)\n- TypeScript 5.x for type safety and modern JavaScript features\n- Python 3 for AI automat...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "5.chat",
+        "contextIndex": 1,
+        "example": "# Product Overview\n\n## AI-Powered Development Automation Template\n\nThis is a comprehensive AI automation template for GitHub repositories that enables intelligent issue resolution and PR management us...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "5.chat",
+        "contextIndex": 2,
+        "example": "# Project Structure\n\n## Root Level Organization\n\n```\n├── .github/                    # GitHub Actions workflows and templates\n├── .kiro/                     # Kiro IDE configuration (specs, hooks, ste...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "5.chat",
+        "contextIndex": 3,
+        "example": "# Technology Stack\n\n## Core Technologies\n\n**Runtime Environment:**\n- Node.js 18+ (required for all components)\n- TypeScript 5.x for type safety and modern JavaScript features\n- Python 3 for AI automat...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "6.chat",
+        "contextIndex": 1,
+        "example": "# Product Overview\n\n## AI-Powered Development Automation Template\n\nThis is a comprehensive AI automation template for GitHub repositories that enables intelligent issue resolution and PR management us...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "6.chat",
+        "contextIndex": 2,
+        "example": "# Project Structure\n\n## Root Level Organization\n\n```\n├── .github/                    # GitHub Actions workflows and templates\n├── .kiro/                     # Kiro IDE configuration (specs, hooks, ste...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "6.chat",
+        "contextIndex": 3,
+        "example": "# Technology Stack\n\n## Core Technologies\n\n**Runtime Environment:**\n- Node.js 18+ (required for all components)\n- TypeScript 5.x for type safety and modern JavaScript features\n- Python 3 for AI automat...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "7.chat",
+        "contextIndex": 1,
+        "example": "# Product Overview\n\n## AI-Powered Development Automation Template\n\nThis is a comprehensive AI automation template for GitHub repositories that enables intelligent issue resolution and PR management us...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "7.chat",
+        "contextIndex": 2,
+        "example": "# Project Structure\n\n## Root Level Organization\n\n```\n├── .github/                    # GitHub Actions workflows and templates\n├── .kiro/                     # Kiro IDE configuration (specs, hooks, ste...",
+        "description": "Steering rule injection"
+      },
+      {
+        "type": "context",
+        "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+        "filename": "7.chat",
+        "contextIndex": 3,
+        "example": "# Technology Stack\n\n## Core Technologies\n\n**Runtime Environment:**\n- Node.js 18+ (required for all components)\n- TypeScript 5.x for type safety and modern JavaScript features\n- Python 3 for AI automat...",
+        "description": "Steering rule injection"
+      }
+    ]
+  },
+  "errorExamples": {
+    "PermissionError": [
+      {
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "1.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/steering/tech.md\" language=\"markdown\" >\n<content>\n# Technology Stack\n\n## Core Technologies\n\n**Runtime Environment:**\n- Node.js 18+ (required for all components)\n- TypeScript 5.x for type safety and modern JavaScript features\n- Python 3 for AI automation scripts and prompt processin...",
+        "description": "PermissionError error example"
+      },
+      {
+        "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+        "filename": "2.chat",
+        "messageIndex": 5,
+        "example": "<file name=\".kiro/steering/tech.md\" language=\"markdown\" >\n<content>\n# Technology Stack\n\n## Core Technologies\n\n**Runtime Environment:**\n- Node.js 18+ (required for all components)\n- TypeScript 5.x for type safety and modern JavaScript features\n- Python 3 for AI automation scripts and prompt processin...",
+        "description": "PermissionError error example"
+      }
+    ]
+  },
+  "successPatterns": {
+    "listDirectory": [
+      "File tree display showing workspace structure",
+      "File tree display showing workspace structure",
+      "File tree display showing workspace structure",
+      "File tree display showing workspace structure",
+      "File tree display showing workspace structure",
+      "File tree display showing workspace structure",
+      "File tree display showing workspace structure"
+    ],
+    "readFile": [
+      "Reading file: .kiro/steering/tech.md",
+      "Reading file: .kiro/specs/sdd-cli-tool/tasks.md",
+      "Reading file: .kiro/steering/Create a steering to commit to git after each task completion.md",
+      "Reading file: .kiro/specs/sdd-cli-tool/design.md",
+      "Reading file: .kiro/specs/sdd-cli-tool/requirements.md",
+      "Reading file: .kiro/specs/n8n-mcp-integration/tasks.md",
+      "Reading file: .kiro/specs/n8n-mcp-integration/design.md",
+      "Reading file: .kiro/steering/tech.md",
+      "Reading file: .kiro/specs/sdd-cli-tool/tasks.md",
+      "Reading file: .kiro/steering/Create a steering to commit to git after each task completion.md",
+      "Reading file: .kiro/specs/sdd-cli-tool/design.md",
+      "Reading file: .kiro/specs/sdd-cli-tool/requirements.md",
+      "Reading file: .kiro/specs/n8n-mcp-integration/tasks.md",
+      "Reading file: .kiro/specs/n8n-mcp-integration/design.md"
+    ]
+  },
+  "usageContexts": {},
+  "insights": [
+    "Most documented tool: readFile (30 examples)",
+    "Most common error type: PermissionError (2 occurrences)"
+  ]
+}

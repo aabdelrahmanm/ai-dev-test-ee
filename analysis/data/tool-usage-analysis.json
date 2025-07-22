@@ -1,0 +1,733 @@
+{
+  "summary": {
+    "totalToolCalls": 315,
+    "uniqueTools": 10,
+    "uniqueExecutions": 2,
+    "categories": 6,
+    "averageSuccessRate": 43.81,
+    "mostUsedTool": "readFile",
+    "dataSourcesCovered": [
+      "chat",
+      "context",
+      "debug-log"
+    ]
+  },
+  "toolStatistics": {
+    "fsWrite": {
+      "successRate": 31.34,
+      "totalCalls": 67,
+      "successfulCalls": 21,
+      "failedCalls": 46,
+      "uniqueExecutions": 2,
+      "categories": [
+        "File Operations"
+      ],
+      "sources": [
+        "chat",
+        "debug-log"
+      ],
+      "commonContexts": [
+        {
+          "context": "debug log",
+          "count": 56
+        },
+        {
+          "context": "general usage",
+          "count": 11
+        }
+      ]
+    },
+    "strReplace": {
+      "successRate": 0,
+      "totalCalls": 2,
+      "successfulCalls": 0,
+      "failedCalls": 2,
+      "uniqueExecutions": 1,
+      "categories": [
+        "File Operations"
+      ],
+      "sources": [
+        "chat"
+      ],
+      "commonContexts": [
+        {
+          "context": "general usage",
+          "count": 2
+        }
+      ]
+    },
+    "contextInjection": {
+      "successRate": 67.65,
+      "totalCalls": 34,
+      "successfulCalls": 23,
+      "failedCalls": 11,
+      "uniqueExecutions": 2,
+      "categories": [
+        "Context Operations"
+      ],
+      "sources": [
+        "chat"
+      ],
+      "commonContexts": [
+        {
+          "context": "general usage",
+          "count": 34
+        }
+      ]
+    },
+    "readFile": {
+      "successRate": 61.62,
+      "totalCalls": 99,
+      "successfulCalls": 61,
+      "failedCalls": 38,
+      "uniqueExecutions": 2,
+      "categories": [
+        "File Operations"
+      ],
+      "sources": [
+        "chat",
+        "context",
+        "debug-log"
+      ],
+      "commonContexts": [
+        {
+          "context": "debug log",
+          "count": 35
+        },
+        {
+          "context": "steering context: unknown",
+          "count": 23
+        },
+        {
+          "context": "file operation",
+          "count": 7
+        },
+        {
+          "context": "file: .kiro/steering/tech.md",
+          "count": 4
+        },
+        {
+          "context": "reading .kiro/steering/tech.md",
+          "count": 2
+        }
+      ]
+    },
+    "fileTree": {
+      "successRate": 100,
+      "totalCalls": 14,
+      "successfulCalls": 14,
+      "failedCalls": 0,
+      "uniqueExecutions": 2,
+      "categories": [
+        "Context Operations"
+      ],
+      "sources": [
+        "chat"
+      ],
+      "commonContexts": [
+        {
+          "context": "general usage",
+          "count": 14
+        }
+      ]
+    },
+    "listDirectory": {
+      "successRate": 100,
+      "totalCalls": 14,
+      "successfulCalls": 14,
+      "failedCalls": 0,
+      "uniqueExecutions": 2,
+      "categories": [
+        "Directory Operations"
+      ],
+      "sources": [
+        "chat",
+        "context"
+      ],
+      "commonContexts": [
+        {
+          "context": "fileTree display",
+          "count": 7
+        },
+        {
+          "context": "fileTree context: unknown",
+          "count": 7
+        }
+      ]
+    },
+    "readMultipleFiles": {
+      "successRate": 0,
+      "totalCalls": 2,
+      "successfulCalls": 0,
+      "failedCalls": 2,
+      "uniqueExecutions": 1,
+      "categories": [
+        "File Operations"
+      ],
+      "sources": [
+        "chat"
+      ],
+      "commonContexts": [
+        {
+          "context": "general usage",
+          "count": 2
+        }
+      ]
+    },
+    "userInput": {
+      "successRate": 0,
+      "totalCalls": 7,
+      "successfulCalls": 0,
+      "failedCalls": 7,
+      "uniqueExecutions": 2,
+      "categories": [
+        "User Interaction"
+      ],
+      "sources": [
+        "chat"
+      ],
+      "commonContexts": [
+        {
+          "context": "general usage",
+          "count": 7
+        }
+      ]
+    },
+    "taskStatus": {
+      "successRate": 10,
+      "totalCalls": 40,
+      "successfulCalls": 4,
+      "failedCalls": 36,
+      "uniqueExecutions": 0,
+      "categories": [
+        "Task Management"
+      ],
+      "sources": [
+        "debug-log"
+      ],
+      "commonContexts": [
+        {
+          "context": "debug log",
+          "count": 40
+        }
+      ]
+    },
+    "executeBash": {
+      "successRate": 2.78,
+      "totalCalls": 36,
+      "successfulCalls": 1,
+      "failedCalls": 35,
+      "uniqueExecutions": 0,
+      "categories": [
+        "System Commands"
+      ],
+      "sources": [
+        "debug-log"
+      ],
+      "commonContexts": [
+        {
+          "context": "debug log",
+          "count": 36
+        }
+      ]
+    }
+  },
+  "toolCategories": {
+    "File Operations": [
+      {
+        "name": "readFile",
+        "usage": {
+          "successRate": 61.62,
+          "totalCalls": 99,
+          "successfulCalls": 61,
+          "failedCalls": 38,
+          "uniqueExecutions": 2,
+          "categories": [
+            "File Operations"
+          ],
+          "sources": [
+            "chat",
+            "context",
+            "debug-log"
+          ],
+          "commonContexts": [
+            {
+              "context": "debug log",
+              "count": 35
+            },
+            {
+              "context": "steering context: unknown",
+              "count": 23
+            },
+            {
+              "context": "file operation",
+              "count": 7
+            },
+            {
+              "context": "file: .kiro/steering/tech.md",
+              "count": 4
+            },
+            {
+              "context": "reading .kiro/steering/tech.md",
+              "count": 2
+            }
+          ]
+        }
+      },
+      {
+        "name": "fsWrite",
+        "usage": {
+          "successRate": 31.34,
+          "totalCalls": 67,
+          "successfulCalls": 21,
+          "failedCalls": 46,
+          "uniqueExecutions": 2,
+          "categories": [
+            "File Operations"
+          ],
+          "sources": [
+            "chat",
+            "debug-log"
+          ],
+          "commonContexts": [
+            {
+              "context": "debug log",
+              "count": 56
+            },
+            {
+              "context": "general usage",
+              "count": 11
+            }
+          ]
+        }
+      },
+      {
+        "name": "strReplace",
+        "usage": {
+          "successRate": 0,
+          "totalCalls": 2,
+          "successfulCalls": 0,
+          "failedCalls": 2,
+          "uniqueExecutions": 1,
+          "categories": [
+            "File Operations"
+          ],
+          "sources": [
+            "chat"
+          ],
+          "commonContexts": [
+            {
+              "context": "general usage",
+              "count": 2
+            }
+          ]
+        }
+      },
+      {
+        "name": "readMultipleFiles",
+        "usage": {
+          "successRate": 0,
+          "totalCalls": 2,
+          "successfulCalls": 0,
+          "failedCalls": 2,
+          "uniqueExecutions": 1,
+          "categories": [
+            "File Operations"
+          ],
+          "sources": [
+            "chat"
+          ],
+          "commonContexts": [
+            {
+              "context": "general usage",
+              "count": 2
+            }
+          ]
+        }
+      }
+    ],
+    "Directory Operations": [
+      {
+        "name": "listDirectory",
+        "usage": {
+          "successRate": 100,
+          "totalCalls": 14,
+          "successfulCalls": 14,
+          "failedCalls": 0,
+          "uniqueExecutions": 2,
+          "categories": [
+            "Directory Operations"
+          ],
+          "sources": [
+            "chat",
+            "context"
+          ],
+          "commonContexts": [
+            {
+              "context": "fileTree display",
+              "count": 7
+            },
+            {
+              "context": "fileTree context: unknown",
+              "count": 7
+            }
+          ]
+        }
+      }
+    ],
+    "Search Operations": [],
+    "System Commands": [
+      {
+        "name": "executeBash",
+        "usage": {
+          "successRate": 2.78,
+          "totalCalls": 36,
+          "successfulCalls": 1,
+          "failedCalls": 35,
+          "uniqueExecutions": 0,
+          "categories": [
+            "System Commands"
+          ],
+          "sources": [
+            "debug-log"
+          ],
+          "commonContexts": [
+            {
+              "context": "debug log",
+              "count": 36
+            }
+          ]
+        }
+      }
+    ],
+    "Context Operations": [
+      {
+        "name": "contextInjection",
+        "usage": {
+          "successRate": 67.65,
+          "totalCalls": 34,
+          "successfulCalls": 23,
+          "failedCalls": 11,
+          "uniqueExecutions": 2,
+          "categories": [
+            "Context Operations"
+          ],
+          "sources": [
+            "chat"
+          ],
+          "commonContexts": [
+            {
+              "context": "general usage",
+              "count": 34
+            }
+          ]
+        }
+      },
+      {
+        "name": "fileTree",
+        "usage": {
+          "successRate": 100,
+          "totalCalls": 14,
+          "successfulCalls": 14,
+          "failedCalls": 0,
+          "uniqueExecutions": 2,
+          "categories": [
+            "Context Operations"
+          ],
+          "sources": [
+            "chat"
+          ],
+          "commonContexts": [
+            {
+              "context": "general usage",
+              "count": 14
+            }
+          ]
+        }
+      }
+    ],
+    "Task Management": [
+      {
+        "name": "taskStatus",
+        "usage": {
+          "successRate": 10,
+          "totalCalls": 40,
+          "successfulCalls": 4,
+          "failedCalls": 36,
+          "uniqueExecutions": 0,
+          "categories": [
+            "Task Management"
+          ],
+          "sources": [
+            "debug-log"
+          ],
+          "commonContexts": [
+            {
+              "context": "debug log",
+              "count": 40
+            }
+          ]
+        }
+      }
+    ],
+    "User Interaction": [
+      {
+        "name": "userInput",
+        "usage": {
+          "successRate": 0,
+          "totalCalls": 7,
+          "successfulCalls": 0,
+          "failedCalls": 7,
+          "uniqueExecutions": 2,
+          "categories": [
+            "User Interaction"
+          ],
+          "sources": [
+            "chat"
+          ],
+          "commonContexts": [
+            {
+              "context": "general usage",
+              "count": 7
+            }
+          ]
+        }
+      }
+    ],
+    "Other": []
+  },
+  "commonSequences": [
+    {
+      "pattern": "fsWrite -> strReplace -> contextInjection -> readFile -> fileTree -> fileTree -> contextInjection -> contextInjection -> listDirectory -> fsWrite -> fsWrite -> readFile -> readFile -> readMultipleFiles -> userInput -> contextInjection -> contextInjection -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> contextInjection -> contextInjection -> listDirectory -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> fsWrite -> strReplace -> contextInjection -> readFile -> fileTree -> fileTree -> contextInjection -> contextInjection -> listDirectory -> fsWrite -> fsWrite -> readFile -> readFile -> readMultipleFiles -> userInput -> contextInjection -> contextInjection -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> contextInjection -> contextInjection -> listDirectory -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile",
+      "count": 1,
+      "executionIds": [
+        "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f"
+      ],
+      "avgSuccessRate": 0.717948717948718
+    },
+    {
+      "pattern": "fsWrite -> userInput -> contextInjection -> readFile -> fileTree -> fileTree -> contextInjection -> contextInjection -> listDirectory -> contextInjection -> listDirectory -> readFile -> readFile -> readFile -> fsWrite -> userInput -> contextInjection -> readFile -> fileTree -> fileTree -> contextInjection -> contextInjection -> listDirectory -> contextInjection -> listDirectory -> readFile -> readFile -> readFile -> fsWrite -> userInput -> contextInjection -> readFile -> fileTree -> fileTree -> contextInjection -> contextInjection -> listDirectory -> contextInjection -> listDirectory -> readFile -> readFile -> readFile -> fsWrite -> userInput -> contextInjection -> readFile -> fileTree -> fileTree -> contextInjection -> contextInjection -> listDirectory -> contextInjection -> listDirectory -> readFile -> readFile -> readFile -> fsWrite -> userInput -> contextInjection -> readFile -> fileTree -> fileTree -> contextInjection -> contextInjection -> listDirectory -> contextInjection -> listDirectory -> readFile -> readFile -> readFile",
+      "count": 1,
+      "executionIds": [
+        "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31"
+      ],
+      "avgSuccessRate": 0.7857142857142857
+    }
+  ],
+  "workflowPatterns": {
+    "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f": {
+      "executionId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+      "toolSequence": [
+        "fsWrite",
+        "strReplace",
+        "contextInjection",
+        "readFile",
+        "fileTree",
+        "fileTree",
+        "contextInjection",
+        "contextInjection",
+        "listDirectory",
+        "fsWrite",
+        "fsWrite",
+        "readFile",
+        "readFile",
+        "readMultipleFiles",
+        "userInput",
+        "contextInjection",
+        "contextInjection",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "contextInjection",
+        "contextInjection",
+        "listDirectory",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "fsWrite",
+        "strReplace",
+        "contextInjection",
+        "readFile",
+        "fileTree",
+        "fileTree",
+        "contextInjection",
+        "contextInjection",
+        "listDirectory",
+        "fsWrite",
+        "fsWrite",
+        "readFile",
+        "readFile",
+        "readMultipleFiles",
+        "userInput",
+        "contextInjection",
+        "contextInjection",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "contextInjection",
+        "contextInjection",
+        "listDirectory",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile",
+        "readFile"
+      ],
+      "uniqueTools": [
+        "fsWrite",
+        "strReplace",
+        "contextInjection",
+        "readFile",
+        "fileTree",
+        "listDirectory",
+        "readMultipleFiles",
+        "userInput"
+      ],
+      "totalCalls": 78,
+      "successRate": 0.717948717948718,
+      "categories": [
+        "File Operations",
+        "Context Operations",
+        "Directory Operations",
+        "User Interaction"
+      ],
+      "sources": [
+        "chat",
+        "context"
+      ]
+    },
+    "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31": {
+      "executionId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+      "toolSequence": [
+        "fsWrite",
+        "userInput",
+        "contextInjection",
+        "readFile",
+        "fileTree",
+        "fileTree",
+        "contextInjection",
+        "contextInjection",
+        "listDirectory",
+        "contextInjection",
+        "listDirectory",
+        "readFile",
+        "readFile",
+        "readFile",
+        "fsWrite",
+        "userInput",
+        "contextInjection",
+        "readFile",
+        "fileTree",
+        "fileTree",
+        "contextInjection",
+        "contextInjection",
+        "listDirectory",
+        "contextInjection",
+        "listDirectory",
+        "readFile",
+        "readFile",
+        "readFile",
+        "fsWrite",
+        "userInput",
+        "contextInjection",
+        "readFile",
+        "fileTree",
+        "fileTree",
+        "contextInjection",
+        "contextInjection",
+        "listDirectory",
+        "contextInjection",
+        "listDirectory",
+        "readFile",
+        "readFile",
+        "readFile",
+        "fsWrite",
+        "userInput",
+        "contextInjection",
+        "readFile",
+        "fileTree",
+        "fileTree",
+        "contextInjection",
+        "contextInjection",
+        "listDirectory",
+        "contextInjection",
+        "listDirectory",
+        "readFile",
+        "readFile",
+        "readFile",
+        "fsWrite",
+        "userInput",
+        "contextInjection",
+        "readFile",
+        "fileTree",
+        "fileTree",
+        "contextInjection",
+        "contextInjection",
+        "listDirectory",
+        "contextInjection",
+        "listDirectory",
+        "readFile",
+        "readFile",
+        "readFile"
+      ],
+      "uniqueTools": [
+        "fsWrite",
+        "userInput",
+        "contextInjection",
+        "readFile",
+        "fileTree",
+        "listDirectory"
+      ],
+      "totalCalls": 70,
+      "successRate": 0.7857142857142857,
+      "categories": [
+        "File Operations",
+        "User Interaction",
+        "Context Operations",
+        "Directory Operations"
+      ],
+      "sources": [
+        "chat",
+        "context"
+      ]
+    }
+  },
+  "insights": [
+    "Most used tool category: File Operations (170 calls)",
+    "Tools with lower success rates: fsWrite, contextInjection, readFile, userInput, taskStatus, executeBash",
+    "Most common tool sequence: fsWrite -> strReplace -> contextInjection -> readFile -> fileTree -> fileTree -> contextInjection -> contextInjection -> listDirectory -> fsWrite -> fsWrite -> readFile -> readFile -> readMultipleFiles -> userInput -> contextInjection -> contextInjection -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> contextInjection -> contextInjection -> listDirectory -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> fsWrite -> strReplace -> contextInjection -> readFile -> fileTree -> fileTree -> contextInjection -> contextInjection -> listDirectory -> fsWrite -> fsWrite -> readFile -> readFile -> readMultipleFiles -> userInput -> contextInjection -> contextInjection -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> contextInjection -> contextInjection -> listDirectory -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile -> readFile (1 times)"
+  ],
+  "rawData": {
+    "totalCalls": 315,
+    "callsWithErrors": 177,
+    "sourcesAnalyzed": [
+      "chat",
+      "context",
+      "debug-log"
+    ]
+  }
+}
