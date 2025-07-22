@@ -3,6 +3,10 @@ analysis/extracted-data.json
 analysis/parsed-trace-data.json
 analysis/api-sequence-analysis.json
 analysis/debug-processed-data.json
+analysis/data/extracted-data.json
+analysis/data/parsed-trace-data.json
+analysis/data/api-sequence-analysis.json
+analysis/data/debug-processed-data.json
 
 # Debug data files
 debug/
