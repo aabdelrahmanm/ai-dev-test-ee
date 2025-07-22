@@ -1,0 +1,688 @@
+{
+  "summary": {
+    "totalRequestsProcessed": 65,
+    "requestsWithContext": 7,
+    "contextObjectsFound": 10,
+    "contextPercentage": "10.77"
+  },
+  "requestBodyContexts": [
+    {
+      "requestId": "1753215856151_p5yxwq",
+      "conversationId": "4c7d4977-72d4-4a5d-8801-b2fe99ea2e42",
+      "lineNumber": 2,
+      "bodySize": 14108,
+      "contextInfo": {
+        "hasContext": true,
+        "fileReferences": [
+          ".js ",
+          ".js ",
+          ".js ",
+          ".sh\n",
+          ".js ",
+          ".json ",
+          ".sh ",
+          ".md ",
+          ".ts ",
+          ".ts ",
+          ".json ",
+          ".json ",
+          ".json ",
+          ".json ",
+          ".ts ",
+          ".json ",
+          ".json ",
+          "/package.json",
+          "/tsconfig.json",
+          "/backend/package.json",
+          "/backend/src/types/workflow.ts",
+          "/frontend/package.json",
+          "/setup-automation.sh",
+          "/workflow.ts"
+        ],
+        "documentReferences": [
+          "requirements\\.md",
+          "design\\.md",
+          "README\\.md",
+          "spec",
+          "documentation"
+        ],
+        "steeringReferences": [
+          "steering",
+          "guidance",
+          "rules"
+        ],
+        "contextTypes": [
+          "file",
+          "document",
+          "steering"
+        ],
+        "contextKeywords": [
+          "context",
+          "file",
+          "document",
+          "include",
+          "workspace",
+          "project",
+          "directory"
+        ]
+      }
+    },
+    {
+      "requestId": "1753216051276_tf7wgr",
+      "conversationId": "b40cbd7d-7067-4d75-ae6c-b3334263bfd7",
+      "lineNumber": 106,
+      "bodySize": 63978,
+      "contextInfo": {
+        "hasContext": true,
+        "fileReferences": [
+          ".kiro/steering/tech.md",
+          ".kiro/hooks/specs/n8n-workflow.md",
+          ".kiro/specs/n8n-mcp-integration/tasks.md",
+          ".kiro/specs/n8n-mcp-integration/design.md",
+          ".kiro/specs",
+          ".js ",
+          ".js ",
+          ".js ",
+          ".sh\n",
+          ".js ",
+          ".json ",
+          ".sh ",
+          ".md ",
+          ".ts ",
+          ".ts ",
+          ".json ",
+          ".json ",
+          ".json ",
+          ".json ",
+          ".ts ",
+          ".json ",
+          ".json ",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md ",
+          "/setup-automation.sh",
+          "/workflow.ts",
+          "/steering/tech.md",
+          "/hooks/specs/n8n-workflow.md",
+          "/specs/n8n-mcp-integration/tasks.md",
+          "/specs/n8n-mcp-integration/design.md"
+        ],
+        "documentReferences": [
+          "requirements\\.md",
+          "design\\.md",
+          "tasks\\.md",
+          "README\\.md",
+          "spec",
+          "documentation"
+        ],
+        "steeringReferences": [
+          "steering",
+          "guidance",
+          "rules"
+        ],
+        "contextTypes": [
+          "file",
+          "document",
+          "steering"
+        ],
+        "contextKeywords": [
+          "context",
+          "file",
+          "document",
+          "include",
+          "project",
+          "directory"
+        ]
+      }
+    },
+    {
+      "requestId": "1753216332656_w7z6df",
+      "conversationId": "bb4781c1-f545-4167-b665-1886f1aa27b1",
+      "lineNumber": 4036,
+      "bodySize": 81518,
+      "contextInfo": {
+        "hasContext": true,
+        "fileReferences": [
+          ".kiro/specs/sdd-cli-tool/requirements.md",
+          ".kiro/specs/sdd-cli-tool/requirements.md",
+          ".kiro/specs/sdd-cli-tool/requirements.md",
+          ".kiro/specs/sdd-cli-tool/requirements.md",
+          ".kiro/steering/tech.md",
+          ".kiro/hooks/specs/n8n-workflow.md",
+          ".kiro/specs/sdd-cli-tool/tasks.md",
+          ".kiro/specs/sdd-cli-tool/design.md",
+          ".kiro/specs/sdd-cli-tool/requirements.md",
+          ".kiro/specs/n8n-mcp-integration/tasks.md",
+          ".kiro/specs/n8n-mcp-integration/design.md",
+          ".js ",
+          ".js ",
+          ".js ",
+          ".sh\n",
+          ".js ",
+          ".json ",
+          ".sh ",
+          ".md ",
+          ".ts ",
+          ".ts ",
+          ".json ",
+          ".json ",
+          ".json ",
+          ".json ",
+          ".ts ",
+          ".json ",
+          ".json ",
+          ".md\n",
+          ".md\n",
+          ".md\t",
+          ".md\t",
+          ".md ",
+          ".md ",
+          ".md ",
+          ".md ",
+          ".md ",
+          ".md ",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          "/setup-automation.sh",
+          "/workflow.ts",
+          "/specs/sdd-cli-tool/requirements.md",
+          "/specs/sdd-cli-tool/requirements.md",
+          "/specs/sdd-cli-tool/requirements.md",
+          "/specs/sdd-cli-tool/requirements.md",
+          "/steering/tech.md",
+          "/hooks/specs/n8n-workflow.md",
+          "/specs/sdd-cli-tool/tasks.md",
+          "/specs/sdd-cli-tool/design.md",
+          "/specs/sdd-cli-tool/requirements.md",
+          "/specs/n8n-mcp-integration/tasks.md",
+          "/specs/n8n-mcp-integration/design.md"
+        ],
+        "documentReferences": [
+          "requirements\\.md",
+          "design\\.md",
+          "tasks\\.md",
+          "README\\.md",
+          "spec",
+          "documentation"
+        ],
+        "steeringReferences": [
+          "steering",
+          "guidance",
+          "rules"
+        ],
+        "contextTypes": [
+          "file",
+          "document",
+          "steering"
+        ],
+        "contextKeywords": [
+          "context",
+          "file",
+          "document",
+          "reference",
+          "include",
+          "project",
+          "directory"
+        ]
+      }
+    },
+    {
+      "requestId": "1753216425268_att8if",
+      "conversationId": "b40cbd7d-7067-4d75-ae6c-b3334263bfd7",
+      "lineNumber": 4253,
+      "bodySize": 95408,
+      "contextInfo": {
+        "hasContext": true,
+        "fileReferences": [
+          ".kiro/steering/tech.md",
+          ".kiro/hooks/specs/n8n-workflow.md",
+          ".kiro/specs/sdd-cli-tool/tasks.md",
+          ".kiro/specs/sdd-cli-tool/design.md",
+          ".kiro/specs/sdd-cli-tool/requirements.md",
+          ".kiro/specs/n8n-mcp-integration/tasks.md",
+          ".kiro/specs/n8n-mcp-integration/design.md",
+          ".kiro/specs/sdd-cli-tool/tasks.md",
+          ".kiro/steering/tech.md",
+          ".kiro/hooks/specs/n8n-workflow.md",
+          ".kiro/specs/sdd-cli-tool/tasks.md",
+          ".kiro/specs/sdd-cli-tool/design.md",
+          ".kiro/specs/sdd-cli-tool/requirements.md",
+          ".kiro/specs/n8n-mcp-integration/tasks.md",
+          ".kiro/specs/n8n-mcp-integration/design.md",
+          ".kiro/specs/sdd-cli-tool/tasks.md",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md ",
+          "/steering/tech.md",
+          "/hooks/specs/n8n-workflow.md",
+          "/specs/sdd-cli-tool/tasks.md",
+          "/specs/sdd-cli-tool/design.md",
+          "/specs/sdd-cli-tool/requirements.md",
+          "/specs/n8n-mcp-integration/tasks.md",
+          "/specs/n8n-mcp-integration/design.md",
+          "/specs/sdd-cli-tool/tasks.md",
+          "/steering/tech.md",
+          "/hooks/specs/n8n-workflow.md",
+          "/specs/sdd-cli-tool/tasks.md",
+          "/specs/sdd-cli-tool/design.md",
+          "/specs/sdd-cli-tool/requirements.md",
+          "/specs/n8n-mcp-integration/tasks.md",
+          "/specs/n8n-mcp-integration/design.md",
+          "/specs/sdd-cli-tool/tasks.md"
+        ],
+        "documentReferences": [
+          "requirements\\.md",
+          "design\\.md",
+          "tasks\\.md",
+          "spec"
+        ],
+        "steeringReferences": [
+          "steering",
+          "rules"
+        ],
+        "contextTypes": [
+          "file",
+          "document",
+          "steering"
+        ],
+        "contextKeywords": [
+          "context",
+          "file",
+          "reference"
+        ]
+      }
+    },
+    {
+      "requestId": "1753216819360_2a3cyf",
+      "conversationId": "3cec78e8-395e-4fd9-bb6e-6b532cac9918",
+      "lineNumber": 5869,
+      "bodySize": 95722,
+      "contextInfo": {
+        "hasContext": true,
+        "fileReferences": [
+          ".kiro/specs/sdd-cli-tool/tasks.md",
+          ".kiro/specs/sdd-cli-tool/tasks.md",
+          ".kiro/specs/sdd-cli-tool/tasks.md",
+          ".kiro/specs/sdd-cli-tool/tasks.md",
+          ".kiro/steering/tech.md",
+          ".kiro/hooks/specs/n8n-workflow.md",
+          ".kiro/specs/sdd-cli-tool/tasks.md",
+          ".kiro/steering/Create",
+          ".kiro/specs/sdd-cli-tool/design.md",
+          ".kiro/specs/sdd-cli-tool/requirements.md",
+          ".kiro/specs/n8n-mcp-integration/tasks.md",
+          ".kiro/specs/n8n-mcp-integration/design.md",
+          ".kiro/steering/Create",
+          ".js ",
+          ".js ",
+          ".js ",
+          ".sh\n",
+          ".js ",
+          ".json ",
+          ".sh ",
+          ".md ",
+          ".ts ",
+          ".ts ",
+          ".json ",
+          ".json ",
+          ".json ",
+          ".json ",
+          ".ts ",
+          ".json ",
+          ".json ",
+          ".md\n",
+          ".md\n",
+          ".md\t",
+          ".md\t",
+          ".json ",
+          ".js ",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          ".md\n",
+          "/setup-automation.sh",
+          "/workflow.ts",
+          "/specs/sdd-cli-tool/tasks.md",
+          "/specs/sdd-cli-tool/tasks.md",
+          "/specs/sdd-cli-tool/tasks.md",
+          "/specs/sdd-cli-tool/tasks.md",
+          "/steering/tech.md",
+          "/hooks/specs/n8n-workflow.md",
+          "/specs/sdd-cli-tool/tasks.md",
+          "/specs/sdd-cli-tool/design.md",
+          "/specs/sdd-cli-tool/requirements.md",
+          "/specs/n8n-mcp-integration/tasks.md",
+          "/specs/n8n-mcp-integration/design.md"
+        ],
+        "documentReferences": [
+          "requirements\\.md",
+          "design\\.md",
+          "tasks\\.md",
+          "README\\.md",
+          "spec",
+          "documentation"
+        ],
+        "steeringReferences": [
+          "steering",
+          "guidance",
+          "rules"
+        ],
+        "contextTypes": [
+          "file",
+          "document",
+          "steering"
+        ],
+        "contextKeywords": [
+          "context",
+          "file",
+          "document",
+          "include",
+          "project"
+        ]
+      }
+    },
+    {
+      "requestId": "1753217317987_zbzwup",
+      "conversationId": "485d2b86-d636-4fd6-ad19-875cbe60dd14",
+      "lineNumber": 6306,
+      "bodySize": 66246,
+      "contextInfo": {
+        "hasContext": true,
+        "fileReferences": [
+          ".kiro/specs",
+          ".js ",
+          ".js ",
+          ".js ",
+          ".sh\n",
+          ".js ",
+          ".json ",
+          ".sh ",
+          ".md ",
+          ".ts ",
+          ".ts ",
+          ".json ",
+          ".json ",
+          ".json ",
+          ".json ",
+          ".ts ",
+          ".json ",
+          ".json ",
+          ".md ",
+          "/setup-automation.sh",
+          "/workflow.ts",
+          "/tmp/kiro_full_trace.json"
+        ],
+        "documentReferences": [
+          "requirements\\.md",
+          "design\\.md",
+          "README\\.md",
+          "spec",
+          "documentation"
+        ],
+        "steeringReferences": [
+          "steering",
+          "guidance",
+          "rules"
+        ],
+        "contextTypes": [
+          "file",
+          "document",
+          "steering"
+        ],
+        "contextKeywords": [
+          "context",
+          "file",
+          "document",
+          "include",
+          "project",
+          "directory"
+        ]
+      }
+    },
+    {
+      "requestId": "1753218539959_lhooj",
+      "conversationId": "485d2b86-d636-4fd6-ad19-875cbe60dd14",
+      "lineNumber": 11563,
+      "bodySize": 155704,
+      "contextInfo": {
+        "hasContext": true,
+        "fileReferences": [
+          ".md "
+        ],
+        "documentReferences": [
+          "tasks\\.md",
+          "spec"
+        ],
+        "steeringReferences": [
+          "rules"
+        ],
+        "contextTypes": [
+          "file",
+          "document",
+          "steering"
+        ],
+        "contextKeywords": [
+          "file",
+          "document"
+        ]
+      }
+    }
+  ],
+  "streamingContexts": [
+    {
+      "requestId": "1753216051276_tf7wgr",
+      "lineNumber": 119,
+      "chunkContent": "\u0000\u0000\u0000�\u0000\u0000\u0000R����\u000b:event-type\u0007\u0000\ftoolUseEvent\r:content-type\u0007\u0000\u0010application/json\r:message-type\u0007\u0000\u0005event{\"input\":\"\\\": \\\".kiro/s\",\"name\":\"fsWrite\",\"toolUseId\":\"tooluse_1WA1IJk3Rj2zwwMHewRnfg\"}c�\u0007f",
+      "contextReferences": [
+        {
+          "type": "file_path",
+          "value": ".kiro/s"
+        }
+      ],
+      "hasAssistantEvent": false,
+      "hasToolEvent": true
+    },
+    {
+      "requestId": "1753216332656_w7z6df",
+      "lineNumber": 4076,
+      "chunkContent": "\u0000\u0000\u0000�\u0000\u0000\u0000Rs�T\n\u000b:event-type\u0007\u0000\ftoolUseEvent\r:content-type\u0007\u0000\u0010application/json\r:message-type\u0007\u0000\u0005event{\"input\":\",\\\".kiro/spe\",\"name\":\"readMultipleFiles\",\"toolUseId\":\"tooluse_MtDp_CSRSOGWEr6kl99UPA\"}ţ�\u0011",
+      "contextReferences": [
+        {
+          "type": "file_path",
+          "value": ".kiro/spe"
+        }
+      ],
+      "hasAssistantEvent": false,
+      "hasToolEvent": true
+    },
+    {
+      "requestId": "1753217432056_u1v75l",
+      "lineNumber": 6523,
+      "chunkContent": "\u0000\u0000\u0000�\u0000\u0000\u0000RB�;�\u000b:event-type\u0007\u0000\ftoolUseEvent\r:content-type\u0007\u0000\u0010application/json\r:message-type\u0007\u0000\u0005event{\"input\":\"\\\".kiro/spe\",\"name\":\"fsWrite\",\"toolUseId\":\"tooluse_6oc6WBwwTsKif-wSceUleg\"}+=�\u0019",
+      "contextReferences": [
+        {
+          "type": "file_path",
+          "value": ".kiro/spe"
+        }
+      ],
+      "hasAssistantEvent": false,
+      "hasToolEvent": true
+    },
+    {
+      "requestId": "1753217838950_iwdm4",
+      "lineNumber": 7339,
+      "chunkContent": "\u0000\u0000\u0000�\u0000\u0000\u0000R�Pִ\u000b:event-type\u0007\u0000\ftoolUseEvent\r:content-type\u0007\u0000\u0010application/json\r:message-type\u0007\u0000\u0005event{\"input\":\".kiro/specs/\",\"name\":\"strReplace\",\"toolUseId\":\"tooluse_jbCj5nIPQhy62xx-DevrUQ\"}h���",
+      "contextReferences": [
+        {
+          "type": "file_path",
+          "value": ".kiro/specs/"
+        }
+      ],
+      "hasAssistantEvent": false,
+      "hasToolEvent": true
+    },
+    {
+      "requestId": "1753217922113_jczrk",
+      "lineNumber": 8042,
+      "chunkContent": "\u0000\u0000\u0000�\u0000\u0000\u0000R5p\n�\u000b:event-type\u0007\u0000\ftoolUseEvent\r:content-type\u0007\u0000\u0010application/json\r:message-type\u0007\u0000\u0005event{\"input\":\" \\\".kiro/spec\",\"name\":\"strReplace\",\"toolUseId\":\"tooluse_6zZGkPcmTbybpmH8FWIG1g\"}����",
+      "contextReferences": [
+        {
+          "type": "file_path",
+          "value": ".kiro/spec"
+        }
+      ],
+      "hasAssistantEvent": false,
+      "hasToolEvent": true
+    },
+    {
+      "requestId": "1753217939295_ty9ien",
+      "lineNumber": 8255,
+      "chunkContent": "\u0000\u0000\u0000�\u0000\u0000\u0000R��d\u000b:event-type\u0007\u0000\ftoolUseEvent\r:content-type\u0007\u0000\u0010application/json\r:message-type\u0007\u0000\u0005event{\"input\":\"\\\".kiro/s\",\"name\":\"strReplace\",\"toolUseId\":\"tooluse_M3fD-0aiQlahuRO13HGSVQ\"}��z",
+      "contextReferences": [
+        {
+          "type": "file_path",
+          "value": ".kiro/s"
+        }
+      ],
+      "hasAssistantEvent": false,
+      "hasToolEvent": true
+    },
+    {
+      "requestId": "1753218437287_2ghgzo",
+      "lineNumber": 10603,
+      "chunkContent": "\u0000\u0000\u0000�\u0000\u0000\u0000R5p\n�\u000b:event-type\u0007\u0000\ftoolUseEvent\r:content-type\u0007\u0000\u0010application/json\r:message-type\u0007\u0000\u0005event{\"input\":\" \\\".kiro/spec\",\"name\":\"strReplace\",\"toolUseId\":\"tooluse_FHESwPx9TJmRuciSRNOwLg\"}O��:",
+      "contextReferences": [
+        {
+          "type": "file_path",
+          "value": ".kiro/spec"
+        }
+      ],
+      "hasAssistantEvent": false,
+      "hasToolEvent": true
+    },
+    {
+      "requestId": "1753218584994_yc9mkk",
+      "lineNumber": 12169,
+      "chunkContent": "\u0000\u0000\u0000�\u0000\u0000\u0000R����\u000b:event-type\u0007\u0000\ftoolUseEvent\r:content-type\u0007\u0000\u0010application/json\r:message-type\u0007\u0000\u0005event{\"input\":\".kiro/spec\",\"name\":\"strReplace\",\"toolUseId\":\"tooluse_3VMfaZNtTA-Z5RfJLC2BHw\"}�\u0017�Q",
+      "contextReferences": [
+        {
+          "type": "file_path",
+          "value": ".kiro/spec"
+        }
+      ],
+      "hasAssistantEvent": false,
+      "hasToolEvent": true
+    },
+    {
+      "requestId": "1753218610301_kttyyh",
+      "lineNumber": 12576,
+      "chunkContent": "\u0000\u0000\u0000�\u0000\u0000\u0000R�0�\u0004\u000b:event-type\u0007\u0000\ftoolUseEvent\r:content-type\u0007\u0000\u0010application/json\r:message-type\u0007\u0000\u0005event{\"input\":\" \\\".kiro/sp\",\"name\":\"strReplace\",\"toolUseId\":\"tooluse_XD5JCwT_SiGHhb19PfKmTQ\"}\n�Lv",
+      "contextReferences": [
+        {
+          "type": "file_path",
+          "value": ".kiro/sp"
+        }
+      ],
+      "hasAssistantEvent": false,
+      "hasToolEvent": true
+    },
+    {
+      "requestId": "1753218644180_detmfm",
+      "lineNumber": 12922,
+      "chunkContent": "\u0000\u0000\u0000�\u0000\u0000\u0000R�Pִ\u000b:event-type\u0007\u0000\ftoolUseEvent\r:content-type\u0007\u0000\u0010application/json\r:message-type\u0007\u0000\u0005event{\"input\":\".kiro/specs/\",\"name\":\"strReplace\",\"toolUseId\":\"tooluse_kCxQKDD0SoyxadtNhZDGBA\"}�`��",
+      "contextReferences": [
+        {
+          "type": "file_path",
+          "value": ".kiro/specs/"
+        }
+      ],
+      "hasAssistantEvent": false,
+      "hasToolEvent": true
+    }
+  ],
+  "patterns": {
+    "fileReferencePatterns": {
+      ".js ": 21,
+      ".sh\n": 5,
+      ".json ": 36,
+      ".sh ": 5,
+      ".md ": 15,
+      ".ts ": 15,
+      "/package.json": 1,
+      "/tsconfig.json": 1,
+      "/backend/package.json": 1,
+      "/backend/src/types/workflow.ts": 1,
+      "/frontend/package.json": 1,
+      "/setup-automation.sh": 5,
+      "/workflow.ts": 5,
+      ".kiro/steering/tech.md": 5,
+      ".kiro/hooks/specs/n8n-workflow.md": 5,
+      ".kiro/specs/n8n-mcp-integration/tasks.md": 5,
+      ".kiro/specs/n8n-mcp-integration/design.md": 5,
+      ".kiro/specs": 2,
+      ".md\n": 40,
+      "/steering/tech.md": 5,
+      "/hooks/specs/n8n-workflow.md": 5,
+      "/specs/n8n-mcp-integration/tasks.md": 5,
+      "/specs/n8n-mcp-integration/design.md": 5,
+      ".kiro/specs/sdd-cli-tool/requirements.md": 8,
+      ".kiro/specs/sdd-cli-tool/tasks.md": 10,
+      ".kiro/specs/sdd-cli-tool/design.md": 4,
+      ".md\t": 4,
+      "/specs/sdd-cli-tool/requirements.md": 8,
+      "/specs/sdd-cli-tool/tasks.md": 10,
+      "/specs/sdd-cli-tool/design.md": 4,
+      ".kiro/steering/Create": 2,
+      "/tmp/kiro_full_trace.json": 1
+    },
+    "documentReferencePatterns": {
+      "requirements\\.md": 6,
+      "design\\.md": 6,
+      "README\\.md": 5,
+      "spec": 7,
+      "documentation": 5,
+      "tasks\\.md": 5
+    },
+    "contextTypeDistribution": {
+      "file": 7,
+      "document": 7,
+      "steering": 7
+    },
+    "contextKeywordFrequency": {
+      "context": 6,
+      "file": 7,
+      "document": 6,
+      "include": 5,
+      "workspace": 1,
+      "project": 5,
+      "directory": 4,
+      "reference": 2
+    }
+  }
+}

@@ -1,0 +1,605 @@
+{
+  "operationTypes": {
+    "ai-assistant-chat": {
+      "count": 6,
+      "averageDuration": 390922.6666666667,
+      "successRate": 1,
+      "averageSteps": 10.833333333333334,
+      "toolUsageRate": 1,
+      "examples": [
+        {
+          "conversationId": "4c7d4977-72d4-4a5d-8801-b2fe99ea2e42",
+          "type": "ai-assistant-chat",
+          "startTime": "2025-07-22T20:24:16.151Z",
+          "endTime": "2025-07-22T20:24:16.151Z",
+          "duration": 0,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "timestamp": "2025-07-22T20:24:16.151Z",
+              "request": {
+                "method": "POST",
+                "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+                "hasBody": true,
+                "bodySize": 14108
+              },
+              "response": {
+                "status": 200,
+                "chunkCount": 91,
+                "toolEvents": 91,
+                "duration": 2391
+              }
+            }
+          ],
+          "success": true,
+          "errors": [],
+          "toolUsage": [
+            {
+              "step": 1,
+              "toolEvents": 91,
+              "timestamp": "2025-07-22T20:24:16.151Z"
+            }
+          ]
+        },
+        {
+          "conversationId": "975cda25-1e05-406c-b3b6-5e1aa5ffd527",
+          "type": "ai-assistant-chat",
+          "startTime": "2025-07-22T20:24:23.543Z",
+          "endTime": "2025-07-22T20:24:23.543Z",
+          "duration": 0,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "timestamp": "2025-07-22T20:24:23.543Z",
+              "request": {
+                "method": "POST",
+                "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+                "hasBody": true,
+                "bodySize": 15875
+              },
+              "response": {
+                "status": 200,
+                "chunkCount": 5,
+                "toolEvents": 5,
+                "duration": 1895
+              }
+            }
+          ],
+          "success": true,
+          "errors": [],
+          "toolUsage": [
+            {
+              "step": 1,
+              "toolEvents": 5,
+              "timestamp": "2025-07-22T20:24:23.543Z"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "examples": {
+    "ai-assistant-chat": {
+      "conversationId": "485d2b86-d636-4fd6-ad19-875cbe60dd14",
+      "duration": 1360634,
+      "success": true,
+      "stepCount": 32,
+      "toolUsage": 31,
+      "stepByStep": [
+        {
+          "step": 1,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 66246
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 38,
+            "toolEvents": 38,
+            "duration": 14083
+          }
+        },
+        {
+          "step": 2,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 66473
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 22,
+            "toolEvents": 22,
+            "duration": 13244
+          }
+        },
+        {
+          "step": 3,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 67330
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 20,
+            "toolEvents": 20,
+            "duration": 10411
+          }
+        },
+        {
+          "step": 4,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 67941
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 13,
+            "toolEvents": 13,
+            "duration": 7483
+          }
+        },
+        {
+          "step": 5,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 68979
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 29,
+            "toolEvents": 29,
+            "duration": 17250
+          }
+        },
+        {
+          "step": 6,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 100722
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 29,
+            "toolEvents": 29,
+            "duration": 15699
+          }
+        },
+        {
+          "step": 7,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 103193
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 24,
+            "toolEvents": 24,
+            "duration": 7773
+          }
+        },
+        {
+          "step": 8,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 104734
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 764,
+            "toolEvents": 764,
+            "duration": 17705
+          }
+        },
+        {
+          "step": 9,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 110896
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 23,
+            "toolEvents": 23,
+            "duration": 13263
+          }
+        },
+        {
+          "step": 10,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 112187
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 20,
+            "toolEvents": 20,
+            "duration": 19591
+          }
+        },
+        {
+          "step": 11,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 115706
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 164,
+            "toolEvents": 164,
+            "duration": 20541
+          }
+        },
+        {
+          "step": 12,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 117292
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 223,
+            "toolEvents": 223,
+            "duration": 32078
+          }
+        },
+        {
+          "step": 13,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 119284
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 215,
+            "toolEvents": 215,
+            "duration": 8567
+          }
+        },
+        {
+          "step": 14,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 121253
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 204,
+            "toolEvents": 204,
+            "duration": 10559
+          }
+        },
+        {
+          "step": 15,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 123108
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 205,
+            "toolEvents": 205,
+            "duration": 21923
+          }
+        },
+        {
+          "step": 16,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 125001
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 223,
+            "toolEvents": 223,
+            "duration": 27690
+          }
+        },
+        {
+          "step": 17,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 127017
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 331,
+            "toolEvents": 330,
+            "duration": 8724
+          }
+        },
+        {
+          "step": 18,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 129767
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 25,
+            "toolEvents": 25,
+            "duration": 15419
+          }
+        },
+        {
+          "step": 19,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 130359
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 27,
+            "toolEvents": 27,
+            "duration": 18855
+          }
+        },
+        {
+          "step": 20,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 133387
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 8,
+            "toolEvents": 8,
+            "duration": 16403
+          }
+        },
+        {
+          "step": 21,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 133862
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 1107,
+            "toolEvents": 1107,
+            "duration": 14284
+          }
+        },
+        {
+          "step": 22,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 142102
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 21,
+            "toolEvents": 21,
+            "duration": 19895
+          }
+        },
+        {
+          "step": 23,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 143101
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 352,
+            "toolEvents": 351,
+            "duration": 15169
+          }
+        },
+        {
+          "step": 24,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 146043
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 315,
+            "toolEvents": 315,
+            "duration": 15303
+          }
+        },
+        {
+          "step": 25,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 148707
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 436,
+            "toolEvents": 436,
+            "duration": 20964
+          }
+        },
+        {
+          "step": 26,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 152229
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 313,
+            "toolEvents": 313,
+            "duration": 23513
+          }
+        },
+        {
+          "step": 27,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 154878
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 87,
+            "toolEvents": 87,
+            "duration": 24243
+          }
+        },
+        {
+          "step": 28,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 155704
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 326,
+            "toolEvents": 326,
+            "duration": 29862
+          }
+        },
+        {
+          "step": 29,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 158201
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 263,
+            "toolEvents": 263,
+            "duration": 14323
+          }
+        },
+        {
+          "step": 30,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 160583
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 481,
+            "toolEvents": 480,
+            "duration": 16039
+          }
+        },
+        {
+          "step": 31,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 164565
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 353,
+            "toolEvents": 353,
+            "duration": 20931
+          }
+        },
+        {
+          "step": 32,
+          "description": "POST codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+          "request": {
+            "method": "POST",
+            "endpoint": "codewhisperer.us-east-1.amazonaws.com/generateAssistantResponse",
+            "hasBody": true,
+            "bodySize": 166900
+          },
+          "response": {
+            "status": 200,
+            "chunkCount": 0,
+            "toolEvents": 0,
+            "duration": 0
+          }
+        }
+      ]
+    }
+  },
+  "patterns": {}
+}

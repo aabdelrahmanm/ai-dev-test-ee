@@ -1,17 +1,26 @@
-# AI Automation Setup Files
-.github/.setup-complete
+# Large analysis data files (intermediate processing files)
+analysis/extracted-data.json
+analysis/parsed-trace-data.json
+analysis/api-sequence-analysis.json
+analysis/debug-processed-data.json
 
-# AI Agent Temporary Files
-_tmp/
-# Contains: agent state files, orchestrator prompts, temporary workflow data
+# Debug data files
+debug/
+.kiro/debug/
+kiro_full_trace.jsonl
 
-# Node modules
+# Node modules and dependencies
 node_modules/
+package-lock.json
 
-# Environment files
-.env
-.env.local
-.env.*.local
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
 # IDE files
 .vscode/
@@ -19,10 +28,21 @@ node_modules/
 *.swp
 *.swo
 
-# OS files
-.DS_Store
-Thumbs.db
-
 # Logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Temporary folders
+tmp/
+temp/

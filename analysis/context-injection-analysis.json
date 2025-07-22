@@ -1,0 +1,406 @@
+{
+  "summary": {
+    "totalConversations": 7,
+    "totalContextItems": 46,
+    "uniqueContextTypes": [
+      "fileTree",
+      "file",
+      "steering"
+    ],
+    "uniqueContextSources": 8
+  },
+  "contextTypes": {
+    "fileTree": 7,
+    "file": 16,
+    "steering": 23
+  },
+  "contextSources": {
+    "steering": 8,
+    "hooks": 4,
+    "specs": 20,
+    "kiro-config": 5
+  },
+  "injectionMechanisms": {
+    "fileTreeTarget": [
+      500,
+      500,
+      500,
+      500,
+      500,
+      500,
+      500
+    ],
+    "fileInclusion": {
+      "md": 16
+    },
+    "contentInclusion": {
+      "withContent": 0,
+      "withoutContent": 16
+    },
+    "steering": {
+      "total": 23,
+      "withContent": 23
+    }
+  },
+  "contextFlows": [
+    {
+      "conversationId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+      "fileName": "1.chat",
+      "contextCount": 13,
+      "contextTypes": [
+        "file",
+        "file",
+        "file",
+        "file",
+        "file",
+        "file",
+        "file",
+        "file",
+        "fileTree",
+        "steering",
+        "steering",
+        "steering",
+        "steering"
+      ],
+      "filePaths": [
+        ".kiro/steering/tech.md",
+        ".kiro/hooks/specs/n8n-workflow.md",
+        ".kiro/specs/sdd-cli-tool/tasks.md",
+        ".kiro/steering/Create a steering to commit to git after each task completion.md",
+        ".kiro/specs/sdd-cli-tool/design.md",
+        ".kiro/specs/sdd-cli-tool/requirements.md",
+        ".kiro/specs/n8n-mcp-integration/tasks.md",
+        ".kiro/specs/n8n-mcp-integration/design.md"
+      ],
+      "steeringRules": 4,
+      "fileTreeExpansions": [
+        ".kiro/steering/tech.md",
+        ".kiro/hooks/specs/n8n-workflow.md",
+        ".kiro/specs/sdd-cli-tool/tasks.md",
+        ".kiro/steering/Create a steering to commit to git after each task completion.md",
+        ".kiro/specs/sdd-cli-tool/design.md",
+        ".kiro/specs/sdd-cli-tool/requirements.md",
+        ".kiro/specs/n8n-mcp-integration/tasks.md",
+        ".kiro/specs/n8n-mcp-integration/design.md"
+      ],
+      "transformations": []
+    },
+    {
+      "conversationId": "2e2e18d1-0b71-4e96-a0df-3e43e3bc071f",
+      "fileName": "2.chat",
+      "contextCount": 13,
+      "contextTypes": [
+        "file",
+        "file",
+        "file",
+        "file",
+        "file",
+        "file",
+        "file",
+        "file",
+        "fileTree",
+        "steering",
+        "steering",
+        "steering",
+        "steering"
+      ],
+      "filePaths": [
+        ".kiro/steering/tech.md",
+        ".kiro/hooks/specs/n8n-workflow.md",
+        ".kiro/specs/sdd-cli-tool/tasks.md",
+        ".kiro/steering/Create a steering to commit to git after each task completion.md",
+        ".kiro/specs/sdd-cli-tool/design.md",
+        ".kiro/specs/sdd-cli-tool/requirements.md",
+        ".kiro/specs/n8n-mcp-integration/tasks.md",
+        ".kiro/specs/n8n-mcp-integration/design.md"
+      ],
+      "steeringRules": 4,
+      "fileTreeExpansions": [
+        ".kiro/steering/tech.md",
+        ".kiro/hooks/specs/n8n-workflow.md",
+        ".kiro/specs/sdd-cli-tool/tasks.md",
+        ".kiro/steering/Create a steering to commit to git after each task completion.md",
+        ".kiro/specs/sdd-cli-tool/design.md",
+        ".kiro/specs/sdd-cli-tool/requirements.md",
+        ".kiro/specs/n8n-mcp-integration/tasks.md",
+        ".kiro/specs/n8n-mcp-integration/design.md"
+      ],
+      "transformations": []
+    },
+    {
+      "conversationId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+      "fileName": "3.chat",
+      "contextCount": 4,
+      "contextTypes": [
+        "fileTree",
+        "steering",
+        "steering",
+        "steering"
+      ],
+      "filePaths": [],
+      "steeringRules": 3,
+      "fileTreeExpansions": [
+        ".kiro/specs"
+      ],
+      "transformations": []
+    },
+    {
+      "conversationId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+      "fileName": "4.chat",
+      "contextCount": 4,
+      "contextTypes": [
+        "fileTree",
+        "steering",
+        "steering",
+        "steering"
+      ],
+      "filePaths": [],
+      "steeringRules": 3,
+      "fileTreeExpansions": [
+        ".kiro/specs"
+      ],
+      "transformations": []
+    },
+    {
+      "conversationId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+      "fileName": "5.chat",
+      "contextCount": 4,
+      "contextTypes": [
+        "fileTree",
+        "steering",
+        "steering",
+        "steering"
+      ],
+      "filePaths": [],
+      "steeringRules": 3,
+      "fileTreeExpansions": [
+        ".kiro/specs"
+      ],
+      "transformations": []
+    },
+    {
+      "conversationId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+      "fileName": "6.chat",
+      "contextCount": 4,
+      "contextTypes": [
+        "fileTree",
+        "steering",
+        "steering",
+        "steering"
+      ],
+      "filePaths": [],
+      "steeringRules": 3,
+      "fileTreeExpansions": [
+        ".kiro/specs"
+      ],
+      "transformations": []
+    },
+    {
+      "conversationId": "3c09ec5e-86c9-4a44-b392-7b4b92bb6e31",
+      "fileName": "7.chat",
+      "contextCount": 4,
+      "contextTypes": [
+        "fileTree",
+        "steering",
+        "steering",
+        "steering"
+      ],
+      "filePaths": [],
+      "steeringRules": 3,
+      "fileTreeExpansions": [
+        ".kiro/specs"
+      ],
+      "transformations": []
+    }
+  ],
+  "transformations": [
+    {
+      "from": "1.chat",
+      "to": "2.chat",
+      "contextChange": {
+        "added": [],
+        "removed": [],
+        "maintained": [
+          "fileTree",
+          "file",
+          "file",
+          "file",
+          "file",
+          "file",
+          "file",
+          "file",
+          "file",
+          "steering",
+          "steering",
+          "steering",
+          "steering"
+        ]
+      },
+      "pathChanges": {
+        "added": [],
+        "removed": [],
+        "maintained": [
+          ".kiro/steering/tech.md",
+          ".kiro/hooks/specs/n8n-workflow.md",
+          ".kiro/specs/sdd-cli-tool/tasks.md",
+          ".kiro/steering/Create a steering to commit to git after each task completion.md",
+          ".kiro/specs/sdd-cli-tool/design.md",
+          ".kiro/specs/sdd-cli-tool/requirements.md",
+          ".kiro/specs/n8n-mcp-integration/tasks.md",
+          ".kiro/specs/n8n-mcp-integration/design.md"
+        ]
+      }
+    },
+    {
+      "from": "2.chat",
+      "to": "3.chat",
+      "contextChange": {
+        "added": [],
+        "removed": [
+          "file",
+          "file",
+          "file",
+          "file",
+          "file",
+          "file",
+          "file",
+          "file"
+        ],
+        "maintained": [
+          "fileTree",
+          "steering",
+          "steering",
+          "steering"
+        ]
+      },
+      "pathChanges": {
+        "added": [],
+        "removed": [
+          ".kiro/steering/tech.md",
+          ".kiro/hooks/specs/n8n-workflow.md",
+          ".kiro/specs/sdd-cli-tool/tasks.md",
+          ".kiro/steering/Create a steering to commit to git after each task completion.md",
+          ".kiro/specs/sdd-cli-tool/design.md",
+          ".kiro/specs/sdd-cli-tool/requirements.md",
+          ".kiro/specs/n8n-mcp-integration/tasks.md",
+          ".kiro/specs/n8n-mcp-integration/design.md"
+        ],
+        "maintained": []
+      }
+    },
+    {
+      "from": "3.chat",
+      "to": "4.chat",
+      "contextChange": {
+        "added": [],
+        "removed": [],
+        "maintained": [
+          "fileTree",
+          "steering",
+          "steering",
+          "steering"
+        ]
+      },
+      "pathChanges": {
+        "added": [],
+        "removed": [],
+        "maintained": []
+      }
+    },
+    {
+      "from": "4.chat",
+      "to": "5.chat",
+      "contextChange": {
+        "added": [],
+        "removed": [],
+        "maintained": [
+          "fileTree",
+          "steering",
+          "steering",
+          "steering"
+        ]
+      },
+      "pathChanges": {
+        "added": [],
+        "removed": [],
+        "maintained": []
+      }
+    },
+    {
+      "from": "5.chat",
+      "to": "6.chat",
+      "contextChange": {
+        "added": [],
+        "removed": [],
+        "maintained": [
+          "fileTree",
+          "steering",
+          "steering",
+          "steering"
+        ]
+      },
+      "pathChanges": {
+        "added": [],
+        "removed": [],
+        "maintained": []
+      }
+    },
+    {
+      "from": "6.chat",
+      "to": "7.chat",
+      "contextChange": {
+        "added": [],
+        "removed": [],
+        "maintained": [
+          "fileTree",
+          "steering",
+          "steering",
+          "steering"
+        ]
+      },
+      "pathChanges": {
+        "added": [],
+        "removed": [],
+        "maintained": []
+      }
+    }
+  ],
+  "patterns": {
+    "commonContextCombinations": {
+      "file,file,file,file,file,file,file,file,fileTree,steering,steering,steering,steering": 2,
+      "fileTree,steering,steering,steering": 5
+    },
+    "steeringUsagePatterns": {
+      "min": 3,
+      "max": 4,
+      "average": "3.29",
+      "distribution": {
+        "3": 5,
+        "4": 2
+      }
+    },
+    "fileTreeExpansionPatterns": {
+      "min": 1,
+      "max": 8,
+      "average": "3.00",
+      "totalConversationsWithExpansions": 7
+    },
+    "contextEvolutionPatterns": {}
+  },
+  "statistics": {
+    "totalConversations": 7,
+    "totalContextItems": 46,
+    "averageContextPerConversation": "6.57",
+    "contextTypeDistribution": {
+      "fileTree": 7,
+      "file": 16,
+      "steering": 23
+    },
+    "sourceDistribution": {
+      "steering": 8,
+      "hooks": 4,
+      "specs": 20,
+      "kiro-config": 5
+    }
+  }
+}
